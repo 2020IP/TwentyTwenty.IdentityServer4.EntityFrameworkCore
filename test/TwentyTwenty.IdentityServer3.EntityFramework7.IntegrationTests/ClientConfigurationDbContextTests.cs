@@ -85,7 +85,7 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.IntegrationTests
 
             using (var db = new ClientConfigurationContext<int>(_options))
             {
-                var client = db.Clients                    
+                var client = db.Clients
                     .First();
 
                 client.RedirectUris = new HashSet<ClientRedirectUri<int>>();

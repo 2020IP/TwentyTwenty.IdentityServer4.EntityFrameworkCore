@@ -1,5 +1,6 @@
-﻿using IdentityServer3.Core.Configuration;
-using IdentityServer3.Core.Services;
+﻿using IdentityServer4.Core.Configuration;
+using IdentityServer4.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwentyTwenty.IdentityServer3.EntityFramework7.DbContexts;
 using TwentyTwenty.IdentityServer3.EntityFramework7.Services;
@@ -9,30 +10,25 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7
 {
     public class EntityFrameworkOptions
     {
-        private IdentityServerServiceFactory _factory;
-        private IServiceProvider _services;
+        private IIdentityServerBuilder _builder;
 
-        public EntityFrameworkOptions(IdentityServerServiceFactory factory, IServiceProvider services)
+        public EntityFrameworkOptions(IIdentityServerBuilder builder)
         {
-            _factory = factory;
-            _services = services;
+            _builder = builder;
         }
 
         public EntityFrameworkOptions RegisterOperationalStores()
         {
             return RegisterOperationalStores<OperationalContext>();
         }
-
         public EntityFrameworkOptions RegisterOperationalStores<TOperationalContext>()
             where TOperationalContext : OperationalContext
         {
-            _factory.RegisterScopedAspnetService<TOperationalContext, OperationalContext>();
-
-            _factory.AuthorizationCodeStore = new Registration<IAuthorizationCodeStore, AuthorizationCodeStore>();
-            _factory.TokenHandleStore = new Registration<ITokenHandleStore, TokenHandleStore>();
-            _factory.ConsentStore = new Registration<IConsentStore, ConsentStore>();
-            _factory.RefreshTokenStore = new Registration<IRefreshTokenStore, RefreshTokenStore>();
-
+            _builder.Services.AddScoped<OperationalContext, TOperationalContext>();
+            _builder.Services.AddScoped<IAuthorizationCodeStore, AuthorizationCodeStore>();
+            _builder.Services.AddScoped<ITokenHandleStore, TokenHandleStore>();
+            _builder.Services.AddScoped<IConsentStore, ConsentStore>();
+            _builder.Services.AddScoped<IRefreshTokenStore, RefreshTokenStore>();
             return this;
         }
 
@@ -40,10 +36,9 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7
             where TKey : IEquatable<TKey>
             where TClientContext : ClientConfigurationContext<TKey>
         {
-            _factory.RegisterScopedAspnetService<TClientContext, ClientConfigurationContext<TKey>>();
-
-            _factory.ClientStore = new Registration<IClientStore, ClientStore<TKey>>();
-            _factory.CorsPolicyService = new Registration<ICorsPolicyService, ClientConfigurationCorsPolicyService<TKey>>();
+            _builder.Services.AddScoped<ClientConfigurationContext<TKey>, TClientContext>();
+            _builder.Services.AddScoped<IClientStore, ClientStore<TKey>>();
+            _builder.Services.AddScoped<ICorsPolicyService, ClientConfigurationCorsPolicyService<TKey>>();
 
             return this;
         }
@@ -52,20 +47,9 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7
             where TKey : IEquatable<TKey>
             where TScopeContext : ScopeConfigurationContext<TKey>
         {
-            _factory.RegisterScopedAspnetService<TScopeContext, ScopeConfigurationContext<TKey>>();
-
-            _factory.ScopeStore = new Registration<IScopeStore, ScopeStore<TKey>>();
-
+            _builder.Services.AddScoped<ScopeConfigurationContext<TKey>, TScopeContext>();
+            _builder.Services.AddScoped<IScopeStore, ScopeStore<TKey>>();
             return this;
-        }
-
-        /// <summary>
-        /// Convienience method to return the IdentityServerServiceFactory.  Not necessary to call but useful for chaining.
-        /// </summary>
-        /// <returns>The IdentityServerServiceFactory</returns>
-        public IdentityServerServiceFactory Build()
-        {
-            return _factory;
         }
     }
 }

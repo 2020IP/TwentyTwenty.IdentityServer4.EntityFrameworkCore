@@ -1,10 +1,10 @@
-﻿using IdentityServer3.Core.Services;
+﻿using IdentityServer4.Core.Services;
 using Microsoft.Data.Entity;
 using System;
 using System.Threading.Tasks;
 using TwentyTwenty.IdentityServer3.EntityFramework7.DbContexts;
 using TwentyTwenty.IdentityServer3.EntityFramework7.Entities;
-using Models = IdentityServer3.Core.Models;
+using Models = IdentityServer4.Core.Models;
 
 namespace TwentyTwenty.IdentityServer3.EntityFramework7.Stores
 {

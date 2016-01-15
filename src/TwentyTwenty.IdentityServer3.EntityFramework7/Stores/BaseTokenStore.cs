@@ -1,5 +1,5 @@
-﻿using IdentityServer3.Core.Models;
-using IdentityServer3.Core.Services;
+﻿using IdentityServer4.Core.Models;
+using IdentityServer4.Core.Services;
 using Microsoft.Data.Entity;
 using Newtonsoft.Json;
 using System;

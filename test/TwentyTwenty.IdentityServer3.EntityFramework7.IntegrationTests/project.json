@@ -11,11 +11,9 @@
   "dependencies": {
     "xunit": "2.1.0",
     "xunit.runner.dnx": "2.1.0-rc1-build204",
-    "AutoMapper": "4.1.1",
     "EntityFramework.InMemory": "7.0.0-rc1-final",
-    "IdentityServer3": "2.2.3",
     "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
-    "TwentyTwenty.IdentityServer3.EntityFramework7": "0.9.0-*"
+    "TwentyTwenty.IdentityServer3.EntityFramework7": "0.10.0-*"
   },
   "frameworks": {
     "dnx451": { }

@@ -10,10 +10,10 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.Tests
         [Fact]
         public void NamesAreNotMoreThan30Chars()
         {
-            var assembly = Assembly.GetAssembly(typeof(ClientConfigurationContext<>));
+            var assembly = typeof(ClientConfigurationContext<>).GetTypeInfo().Assembly;
             var query =
                 from t in assembly.GetTypes()
-                where t.Namespace == "IdentityServer3.EntityFramework.Entities"
+                where t.Namespace == "IdentityServer4.EntityFramework.Entities"
                 select t;
             foreach (var type in query)
             {

@@ -1,4 +1,4 @@
-﻿using IdentityServer3.Core.Models;
+﻿using IdentityServer4.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -59,6 +59,8 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.Entities
         public virtual int SlidingRefreshTokenLifetime { get; set; }
 
         public virtual TokenUsage RefreshTokenUsage { get; set; }
+
+        public virtual bool AllowPromptNone { get; set; }
 
         public virtual bool UpdateAccessTokenOnRefresh { get; set; }
 

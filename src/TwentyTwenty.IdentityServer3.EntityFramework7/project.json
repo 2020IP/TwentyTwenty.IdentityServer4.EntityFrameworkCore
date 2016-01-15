@@ -1,5 +1,5 @@
 {
-  "version": "0.9.0-*",
+  "version": "0.10.0-*",
   "title": "20|20 IdentityServer3.EntityFramework7",
   "description": "Entity Framework 7 persistence layer for IdentityServer3",
   "authors": [ "2020IP" ],
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "AutoMapper": "4.1.1",
-    "Newtonsoft.Json": "7.0.1",
-    "IdentityServer3": "2.2.3",
+    "Newtonsoft.Json": "8.0.2",
+    "IdentityServer4": "1.0.0-beta1",
     "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
     "EntityFramework.Core": "7.0.0-rc1-final",
     "EntityFramework.Relational": "7.0.0-rc1-final"
@@ -23,7 +23,8 @@
       "frameworkAssemblies": {
         "System.Runtime": "4.0.10.0"
       }
-    }
+    },
+    "dnxcore50": { }
   },
   "repository": {
     "type": "git",

@@ -35,7 +35,7 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.DbContexts
             modelBuilder.Entity<Scope<TKey>>(b =>
             {
                 b.ToTable(EfConstants.TableNames.Scope);
-                b.HasMany(e => e.ScopeClaims).WithOne(e => e.Scope).OnDelete(DeleteBehavior.Cascade);                
+                b.HasMany(e => e.ScopeClaims).WithOne(e => e.Scope).OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.ScopeSecrets).WithOne(e => e.Scope).OnDelete(DeleteBehavior.Cascade);
                 b.Property(e => e.Name).IsRequired().HasMaxLength(200);
                 b.Property(e => e.DisplayName).HasMaxLength(200);
@@ -56,6 +56,6 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.DbContexts
         //                }
         //            }
         //        };
-        //}        
+        //}
     }
 }

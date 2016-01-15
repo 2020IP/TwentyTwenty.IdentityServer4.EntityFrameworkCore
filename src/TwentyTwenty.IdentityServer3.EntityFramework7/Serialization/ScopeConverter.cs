@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Linq;
-using IdentityServer3.Core.Models;
-using IdentityServer3.Core.Services;
+using IdentityServer4.Core.Models;
+using IdentityServer4.Core.Services;
 
 namespace TwentyTwenty.IdentityServer3.EntityFramework7.Serialization
 {

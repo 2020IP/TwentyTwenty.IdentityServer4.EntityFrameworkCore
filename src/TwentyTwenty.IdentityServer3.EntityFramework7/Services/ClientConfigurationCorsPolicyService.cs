@@ -1,4 +1,4 @@
-﻿using IdentityServer3.Core.Services;
+﻿using IdentityServer4.Core.Services;
 using Microsoft.Data.Entity;
 using System;
 using System.Linq;

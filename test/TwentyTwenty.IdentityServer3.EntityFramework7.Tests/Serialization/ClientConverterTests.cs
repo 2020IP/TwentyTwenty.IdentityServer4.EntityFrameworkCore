@@ -1,6 +1,6 @@
-﻿using IdentityServer3.Core;
-using IdentityServer3.Core.Models;
-using IdentityServer3.Core.Services.InMemory;
+﻿using IdentityServer4.Core;
+using IdentityServer4.Core.Models;
+using IdentityServer4.Core.Services.InMemory;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Security.Claims;

@@ -1,9 +1,9 @@
-﻿using IdentityServer3.Core.Services;
+﻿using IdentityServer4.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models = IdentityServer3.Core.Models;
+using Models = IdentityServer4.Core.Models;
 using Microsoft.Data.Entity;
 using TwentyTwenty.IdentityServer3.EntityFramework7.Entities;
 using TwentyTwenty.IdentityServer3.EntityFramework7.DbContexts;
