@@ -6,7 +6,9 @@ var exec = require('child_process').exec;
 var baseDir = process.env.APPVEYOR_BUILD_FOLDER;
 var buildVersion = process.env.APPVEYOR_BUILD_VERSION;
 var buildNumber = process.env.APPVEYOR_BUILD_NUMBER;
-var semversion = semver.valid(buildVersion)
+var findPoint       = buildVersion.lastIndexOf(".");
+var basePackageVer  = buildVersion.substring(0, findPoint);
+var semversion 		= semver.valid(basePackageVer + '-pre-' + buildNumber)
 
 console.info("buildVersion: " + buildVersion);
 console.info("semversion: " + semversion);
