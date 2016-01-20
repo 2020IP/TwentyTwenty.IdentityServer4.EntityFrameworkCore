@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-*",
+  "version": "0.9.6-*",
   "title": "20|20 IdentityServer4.EntityFramework7",
   "description": "Entity Framework 7 persistence layer for IdentityServer4",
   "authors": [ "2020IP" ],
