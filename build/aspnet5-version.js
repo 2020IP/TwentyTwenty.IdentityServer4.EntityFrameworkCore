@@ -8,6 +8,7 @@ var buildVersion = process.env.APPVEYOR_BUILD_VERSION;
 var buildNumber = process.env.APPVEYOR_BUILD_NUMBER;
 var semversion = semver.valid(buildVersion)
 
+console.info("buildVersion: " + buildVersion);
 console.info("semversion: " + semversion);
 
 glob(baseDir + "/**/project.json", null, function(er, files) {
