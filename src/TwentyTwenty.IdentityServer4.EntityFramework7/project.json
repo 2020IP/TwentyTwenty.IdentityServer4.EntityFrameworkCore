@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0-*",
+  "title": "20|20 IdentityServer4.EntityFramework7",
+  "description": "Entity Framework 7 persistence layer for IdentityServer4",
+  "authors": [ "2020IP" ],
+  "iconUrl": "https://avatars3.githubusercontent.com/u/15891935?v=3&s=64",
+  "tags": [ "IdentityServer OpenID Connect OpenIDConnect OAuth2 ASP.NET WebAPI SSO EntityFramework EF Claims Identity Federation 2020" ],
+  "projectUrl": "https://github.com/2020IP/TwentyTwenty.IdentityServer4.EntityFramework7",
+  "licenseUrl": "https://raw.githubusercontent.com/2020IP/TwentyTwenty.IdentityServer4.EntityFramework7/master/LICENSE.txt",
+  "tooling": {
+    "defaultNamespace": "TwentyTwenty.IdentityServer4.EntityFramework7"
+  },
+  "dependencies": {
+    "AutoMapper": "4.1.1",
+    "Newtonsoft.Json": "8.0.2",
+    "IdentityServer4": "1.0.0-beta1",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "EntityFramework.Relational": "7.0.0-rc1-final"
+  },
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Runtime": "4.0.10.0"
+      }
+    },
+    "dnxcore50": { }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2020IP/TwentyTwenty.IdentityServer4.EntityFramework7"
+  }
+}

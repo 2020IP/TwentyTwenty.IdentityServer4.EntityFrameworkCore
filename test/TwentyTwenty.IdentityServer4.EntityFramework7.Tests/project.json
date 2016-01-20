@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "description": "TwentyTwenty.IdentityServer4.EntityFramework7.Tests Class Library",
+  "authors": [ "Class Library template" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "tooling": {
+    "defaultNamespace": "TwentyTwenty.IdentityServer4.EntityFramework7.Tests"
+  },
+  "dependencies": {
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "TwentyTwenty.IdentityServer4.EntityFramework7": ""
+  },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  }
+}
