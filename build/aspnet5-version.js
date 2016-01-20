@@ -6,15 +6,7 @@ var exec = require('child_process').exec;
 var baseDir = process.env.APPVEYOR_BUILD_FOLDER;
 var buildVersion = process.env.APPVEYOR_BUILD_VERSION;
 var buildNumber = process.env.APPVEYOR_BUILD_NUMBER;
-var semversion = semver.valid(buildVersion + '-pre-' + buildNumber)
-
-// Update current build version
-var cmd = "powershell -command \"& {&'Update-AppveyorBuild' -Version '" + semversion + "'}\"";
-exec(cmd, function(error, stdout, stderr) {
-    if(error) {
-        console.error("Error updating build: " + error);
-    }
-});
+var semversion = semver.valid(buildVersion)
 
 console.info("semversion: " + semversion);
 
