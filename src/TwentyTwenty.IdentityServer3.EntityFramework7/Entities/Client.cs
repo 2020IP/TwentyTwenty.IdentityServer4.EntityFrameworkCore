@@ -43,19 +43,19 @@ namespace TwentyTwenty.IdentityServer3.EntityFramework7.Entities
         public virtual ICollection<ClientScope<TKey>> AllowedScopes { get; set; }
 
         // Seconds
-        [Range(0, Int32.MaxValue)]
+        [Range(0, int.MaxValue)]
         public virtual int IdentityTokenLifetime { get; set; }
 
-        [Range(0, Int32.MaxValue)]
+        [Range(0, int.MaxValue)]
         public virtual int AccessTokenLifetime { get; set; }
 
-        [Range(0, Int32.MaxValue)]
+        [Range(0, int.MaxValue)]
         public virtual int AuthorizationCodeLifetime { get; set; }
 
-        [Range(0, Int32.MaxValue)]
+        [Range(0, int.MaxValue)]
         public virtual int AbsoluteRefreshTokenLifetime { get; set; }
 
-        [Range(0, Int32.MaxValue)]
+        [Range(0, int.MaxValue)]
         public virtual int SlidingRefreshTokenLifetime { get; set; }
 
         public virtual TokenUsage RefreshTokenUsage { get; set; }
