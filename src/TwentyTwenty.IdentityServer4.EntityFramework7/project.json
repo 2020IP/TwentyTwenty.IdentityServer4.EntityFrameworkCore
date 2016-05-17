@@ -13,7 +13,7 @@
   "dependencies": {
     "AutoMapper": "4.1.1",
     "Newtonsoft.Json": "8.0.2",
-    "IdentityServer4": "1.0.0-beta1",
+    "IdentityServer4": "1.0.0-beta1-update1" ,
     "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
     "EntityFramework.Core": "7.0.0-rc1-final",
     "EntityFramework.Relational": "7.0.0-rc1-final"
