@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
 using Xunit;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Tests
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Tests
 {
     public class NameLengthTests
     {

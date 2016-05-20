@@ -29,6 +29,7 @@ namespace IdentityServer4.Core.Models
                 .ForMember(x => x.IdentityProviderRestrictions, opt => opt.MapFrom(src => src.IdentityProviderRestrictions.Select(x => new ClientProviderRestriction<TKey> { Provider = x })))
                 .ForMember(x => x.AllowedScopes, opt => opt.MapFrom(src => src.AllowedScopes.Select(x => new ClientScope<TKey> { Scope = x })))
                 .ForMember(x => x.AllowedCorsOrigins, opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => new ClientCorsOrigin<TKey> { Origin = x })))
+                .ForMember(x => x.AllowedGrantTypes, opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => new ClientGrantType<TKey> { GrantType = x })))
                 .ForMember(x => x.Claims, opt => opt.MapFrom(src => src.Claims.Select(x => new ClientClaim<TKey> { Type = x.Type, Value = x.Value })));
         }
 
@@ -83,6 +84,10 @@ namespace IdentityServer4.Core.Models
             if (s.AllowedCorsOrigins == null)
             {
                 s.AllowedCorsOrigins = new List<string>();
+            }
+            if (s.AllowedGrantTypes == null)
+            {
+                s.AllowedGrantTypes = new List<string>();
             }
 
             return Mapper.Map(s, dest);

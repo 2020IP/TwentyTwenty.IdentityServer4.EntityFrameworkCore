@@ -26,6 +26,9 @@
   },
   "frameworks": {
     "netstandard1.5": {
+      "dependencies": {
+        "System.Runtime": "4.0.20.0"
+      },
       "imports": [
         "dnxcore50",
         "portable-net452+win81"

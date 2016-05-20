@@ -30,6 +30,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
                 .Include(x => x.IdentityProviderRestrictions)
                 .Include(x => x.Claims)
                 .Include(x => x.AllowedCorsOrigins)
+                .Include(x => x.AllowedGrantTypes)
                 .SingleOrDefaultAsync(x => x.ClientId == clientId);
 
             return client.ToModel();

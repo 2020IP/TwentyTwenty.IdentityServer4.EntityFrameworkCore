@@ -4,10 +4,10 @@ using IdentityServer4.Core.Services.InMemory;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Security.Claims;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Serialization;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization;
 using Xunit;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Tests.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Tests.Serialization
 {
     public class ClientConverterTests
     {

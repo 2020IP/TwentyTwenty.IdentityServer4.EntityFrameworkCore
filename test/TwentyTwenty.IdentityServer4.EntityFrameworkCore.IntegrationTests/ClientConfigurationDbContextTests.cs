@@ -1,12 +1,11 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Xunit;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.IntegrationTests
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests
 {
     public class ClientConfigurationDbContextTests
     {

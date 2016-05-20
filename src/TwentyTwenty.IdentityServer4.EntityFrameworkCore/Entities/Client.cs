@@ -30,7 +30,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 
         public virtual bool AllowRememberConsent { get; set; }
 
-        public virtual GrantTypes AllowedGrantTypes { get; set; }
+        public virtual ICollection<ClientGrantType<TKey>> AllowedGrantTypes { get; set; }
 
         public virtual ICollection<ClientRedirectUri<TKey>> RedirectUris { get; set; }
 

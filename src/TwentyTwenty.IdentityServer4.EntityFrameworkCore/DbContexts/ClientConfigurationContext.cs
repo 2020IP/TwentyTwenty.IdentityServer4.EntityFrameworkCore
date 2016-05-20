@@ -26,6 +26,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
                 b.HasMany(e => e.IdentityProviderRestrictions).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.ClientSecrets).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.AllowedCorsOrigins).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
+                b.HasMany(e => e.AllowedGrantTypes).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasIndex(e => e.ClientId).IsUnique();
                 b.Property(e => e.ClientId).IsRequired().HasMaxLength(200);
                 b.Property(e => e.ClientName).IsRequired().HasMaxLength(200);

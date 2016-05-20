@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{716F6216-302F-436D-9E15-28C986B1BBDE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFrameworkCore", "src\TwentyTwenty.IdentityServer4.EntityFramework7\TwentyTwenty.IdentityServer4.EntityFrameworkCore.xproj", "{00E8CCBF-CE20-4D3A-ABA0-5EAA4F348180}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFrameworkCore", "src\TwentyTwenty.IdentityServer4.EntityFrameworkCore\TwentyTwenty.IdentityServer4.EntityFrameworkCore.xproj", "{00E8CCBF-CE20-4D3A-ABA0-5EAA4F348180}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFramework7.Tests", "test\TwentyTwenty.IdentityServer4.EntityFramework7.Tests\TwentyTwenty.IdentityServer4.EntityFramework7.Tests.xproj", "{DD12EFDA-E38C-4426-9554-5D7D0CCCE5C2}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFrameworkCore.Tests", "test\TwentyTwenty.IdentityServer4.EntityFrameworkCore.Tests\TwentyTwenty.IdentityServer4.EntityFrameworkCore.Tests.xproj", "{DD12EFDA-E38C-4426-9554-5D7D0CCCE5C2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFramework7.IntegrationTests", "test\TwentyTwenty.IdentityServer4.EntityFramework7.IntegrationTests\TwentyTwenty.IdentityServer4.EntityFramework7.IntegrationTests.xproj", "{0BB53F9B-7351-4CC0-BF1A-53F3B0DF764E}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests", "test\TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests\TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests.xproj", "{0BB53F9B-7351-4CC0-BF1A-53F3B0DF764E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

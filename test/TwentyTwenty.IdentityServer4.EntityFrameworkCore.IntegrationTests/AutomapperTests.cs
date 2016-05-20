@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Xunit;
 using Models = IdentityServer4.Core.Models;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.IntegrationTests
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests
 {
     public class AutomapperTests
     {

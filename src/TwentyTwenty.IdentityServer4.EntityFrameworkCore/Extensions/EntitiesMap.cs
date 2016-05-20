@@ -28,6 +28,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 .ForMember(x => x.IdentityProviderRestrictions, opt => opt.MapFrom(src => src.IdentityProviderRestrictions.Select(x => x.Provider)))
                 .ForMember(x => x.AllowedScopes, opt => opt.MapFrom(src => src.AllowedScopes.Select(x => x.Scope)))
                 .ForMember(x => x.AllowedCorsOrigins, opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => x.Origin)))
+                .ForMember(x => x.AllowedGrantTypes, opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => x.GrantType)))
                 .ForMember(x => x.Claims, opt => opt.MapFrom(src => src.Claims.Select(x => new Claim(x.Type, x.Value))));
         }
 
@@ -82,6 +83,10 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
             if (s.AllowedCorsOrigins == null)
             {
                 s.AllowedCorsOrigins = new List<ClientCorsOrigin<TKey>>();
+            }
+            if (s.AllowedGrantTypes == null)
+            {
+                s.AllowedGrantTypes = new List<ClientGrantType<TKey>>();
             }
 
             return Mapper.Map<Client<TKey>, Models.Client>(s);
