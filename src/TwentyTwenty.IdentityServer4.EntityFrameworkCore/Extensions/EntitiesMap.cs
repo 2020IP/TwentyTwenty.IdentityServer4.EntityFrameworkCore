@@ -13,15 +13,27 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
     {
         static EntitiesMap()
         {
-            Mapper.CreateMap<Scope<TKey>, Models.Scope>(MemberList.Destination)
+            //if (Mapper.Instance == null)
+            //{
+                Mapper.Initialize(cfg =>
+                {
+                    RegisterMappings(cfg);
+                    Models.ModelsMap<TKey>.RegisterMappings(cfg);
+                });
+            //}
+        }
+
+        public static void RegisterMappings(IMapperConfiguration cfg)
+        {
+            cfg.CreateMap<Scope<TKey>, Models.Scope>(MemberList.Destination)
                 .ForMember(x => x.Claims, opts => opts.MapFrom(src => src.ScopeClaims.Select(x => x)));
-            Mapper.CreateMap<ScopeClaim<TKey>, Models.ScopeClaim>(MemberList.Destination);
-            Mapper.CreateMap<ScopeSecret<TKey>, Models.Secret>(MemberList.Destination)
+            cfg.CreateMap<ScopeClaim<TKey>, Models.ScopeClaim>(MemberList.Destination);
+            cfg.CreateMap<ScopeSecret<TKey>, Models.Secret>(MemberList.Destination)
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? new DateTimeOffset(src.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?)));
 
-            Mapper.CreateMap<ClientSecret<TKey>, Models.Secret>(MemberList.Destination)
+            cfg.CreateMap<ClientSecret<TKey>, Models.Secret>(MemberList.Destination)
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? new DateTimeOffset(src.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?)));
-            Mapper.CreateMap<Client<TKey>, Models.Client>(MemberList.Destination)
+            cfg.CreateMap<Client<TKey>, Models.Client>(MemberList.Destination)
                 .ForMember(x => x.UpdateAccessTokenClaimsOnRefresh, opt => opt.MapFrom(src => src.UpdateAccessTokenOnRefresh))
                 .ForMember(x => x.RedirectUris, opt => opt.MapFrom(src => src.RedirectUris.Select(x => x.Uri)))
                 .ForMember(x => x.PostLogoutRedirectUris, opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => x.Uri)))
@@ -30,6 +42,13 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 .ForMember(x => x.AllowedCorsOrigins, opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => x.Origin)))
                 .ForMember(x => x.AllowedGrantTypes, opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => x.GrantType)))
                 .ForMember(x => x.Claims, opt => opt.MapFrom(src => src.Claims.Select(x => new Claim(x.Type, x.Value))));
+
+            cfg.CreateMap<Consent, Models.Consent>(MemberList.Destination)
+                .ForMember(x => x.Scopes, opts => opts.MapFrom(src => src.Scopes.ParseScopes()))
+                .ForMember(x => x.Subject, opts => opts.MapFrom(src => src.SubjectId));
+
+            cfg.CreateMap<Token, Models.Token>(MemberList.Destination)
+                .ForAllMembers(opt => opt.MapFrom(src => JsonConvert.DeserializeObject<Models.Token>(src.JsonCode)));
         }
 
         public static Models.Scope ToModel(Scope<TKey> s)
@@ -95,16 +114,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 
     public static class EntitiesMap
     {
-        static EntitiesMap()
-        {
-            Mapper.CreateMap<Consent, Models.Consent>(MemberList.Destination)
-                .ForMember(x => x.Scopes, opts => opts.MapFrom(src => src.Scopes.ParseScopes()))
-                .ForMember(x => x.Subject, opts => opts.MapFrom(src => src.SubjectId));
-
-            Mapper.CreateMap<Token, Models.Token>(MemberList.Destination)
-                .ForAllMembers(opt => opt.MapFrom(src => JsonConvert.DeserializeObject<Models.Token>(src.JsonCode)));
-        }
-
         public static Models.Consent ToModel(Consent s)
         {
             if (s == null) return null;

@@ -11,17 +11,29 @@ namespace IdentityServer4.Core.Models
     {
         static ModelsMap()
         {
-            Mapper.CreateMap<Scope, Scope<TKey>>(MemberList.Source)
+            //if (Mapper.Instance == null)
+            //{
+                Mapper.Initialize(cfg =>
+                {
+                    EntitiesMap<TKey>.RegisterMappings(cfg);
+                    RegisterMappings(cfg);
+                });
+            //}
+        }
+
+        public static void RegisterMappings(IMapperConfiguration cfg)
+        {
+            cfg.CreateMap<Scope, Scope<TKey>>(MemberList.Source)
                 .ForSourceMember(x => x.Claims, opts => opts.Ignore())
                 .ForMember(x => x.AllowUnrestrictedIntrospection, opts => opts.MapFrom(src => src.AllowUnrestrictedIntrospection))
                 .ForMember(x => x.ScopeClaims, opts => opts.MapFrom(src => src.Claims.Select(x => x)));
-            Mapper.CreateMap<ScopeClaim, ScopeClaim<TKey>>(MemberList.Source);
-            Mapper.CreateMap<Secret, ScopeSecret<TKey>>(MemberList.Source)
+            cfg.CreateMap<ScopeClaim, ScopeClaim<TKey>>(MemberList.Source);
+            cfg.CreateMap<Secret, ScopeSecret<TKey>>(MemberList.Source)
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? src.Expiration.Value.UtcDateTime : default(DateTime?)));
 
-            Mapper.CreateMap<Secret, ClientSecret<TKey>>(MemberList.Source)
+            cfg.CreateMap<Secret, ClientSecret<TKey>>(MemberList.Source)
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? src.Expiration.Value.UtcDateTime : default(DateTime?)));
-            Mapper.CreateMap<Client, Client<TKey>>(MemberList.Source)
+            cfg.CreateMap<Client, Client<TKey>>(MemberList.Source)
                 .ForMember(x => x.AllowPromptNone, opt => opt.MapFrom(src => src.AllowPromptNone))
                 .ForMember(x => x.UpdateAccessTokenOnRefresh, opt => opt.MapFrom(src => src.UpdateAccessTokenClaimsOnRefresh))
                 .ForMember(x => x.RedirectUris, opt => opt.MapFrom(src => src.RedirectUris.Select(x => new ClientRedirectUri<TKey> { Uri = x })))

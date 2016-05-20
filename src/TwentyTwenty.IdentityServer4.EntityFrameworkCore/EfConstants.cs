@@ -13,6 +13,7 @@
             public const string ClientScopes = "ClientScopes";
             public const string ClientSecret = "ClientSecrets";
             public const string ClientCorsOrigin = "ClientCorsOrigins";
+            public const string ClientGrantType = "ClientGrantTypes";
 
             public const string Scope = "Scopes";
             public const string ScopeClaim = "ScopeClaims";

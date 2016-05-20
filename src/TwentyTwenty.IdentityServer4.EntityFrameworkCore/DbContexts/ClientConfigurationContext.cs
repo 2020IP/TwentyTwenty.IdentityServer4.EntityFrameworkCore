@@ -44,6 +44,10 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
                 .ToTable(EfConstants.TableNames.ClientCorsOrigin)
                 .Property(e => e.Origin).IsRequired().HasMaxLength(150);
 
+            modelBuilder.Entity<ClientGrantType<TKey>>()
+                .ToTable(EfConstants.TableNames.ClientGrantType)
+                .Property(e => e.GrantType).IsRequired().HasMaxLength(150);
+
             modelBuilder.Entity<ClientPostLogoutRedirectUri<TKey>>()
                 .ToTable(EfConstants.TableNames.ClientPostLogoutRedirectUri)
                 .Property(e => e.Uri).IsRequired().HasMaxLength(2000);

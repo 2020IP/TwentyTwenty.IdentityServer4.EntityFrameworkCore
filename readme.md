@@ -40,10 +40,10 @@ public void Configure(IApplicationBuilder app)
 {
 	...
 	var factory = new IdentityServerServiceFactory();
-	factory.ConfigureEntityFramework(app.ApplicationServices)
+	factory.ConfigureEntityFramework<Guid>(app.ApplicationServices)
 		.RegisterOperationalStores()
-		.RegisterClientStore<Guid, ClientConfigurationContext>()
-		.RegisterScopeStore<Guid, ScopeConfigurationContext>();
+		.RegisterClientStore<ClientConfigurationContext>()
+		.RegisterScopeStore<ScopeConfigurationContext>();
 
 	owinAppBuilder.UseIdentityServer(new IdentityServerOptions
 	{

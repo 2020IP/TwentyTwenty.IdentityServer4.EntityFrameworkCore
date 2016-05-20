@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Xunit;
@@ -11,15 +12,18 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests
         [Fact]
         public void AutomapperConfigurationIsValid()
         {
+            // Entry point of the library which initializes the mappings
+            new EntityFrameworkOptions<Guid>(null);
+
             Models.Scope s = new Models.Scope();
 
-            var e = Models.MappingExtensions.ToEntity<int>(s);
+            Models.MappingExtensions.ToEntity<int>(s);
 
             var s2 = new Scope<int>
             {
                 ScopeClaims = new HashSet<ScopeClaim<int>>()
             };
-            var m = s2.ToModel();
+            s2.ToModel();
 
             Mapper.AssertConfigurationIsValid();
         }
