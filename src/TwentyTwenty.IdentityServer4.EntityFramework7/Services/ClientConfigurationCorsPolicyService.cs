@@ -1,12 +1,12 @@
 ﻿using IdentityServer4.Core.Services;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Extensions;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Services
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services
 {
     public class ClientConfigurationCorsPolicyService<TKey> : ICorsPolicyService
         where TKey : IEquatable<TKey>

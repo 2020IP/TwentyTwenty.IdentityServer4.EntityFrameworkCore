@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Models = IdentityServer4.Core.Models;
-using Microsoft.Data.Entity;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Stores
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
     public class ScopeStore<TKey> : IScopeStore
         where TKey : IEquatable<TKey>

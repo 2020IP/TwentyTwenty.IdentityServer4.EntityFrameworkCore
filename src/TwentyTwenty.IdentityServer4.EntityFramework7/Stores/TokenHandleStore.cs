@@ -2,9 +2,9 @@
 using IdentityServer4.Core.Services;
 using System;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Stores
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
     public class TokenHandleStore : BaseTokenStore<Token>, ITokenHandleStore
     {

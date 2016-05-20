@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Extensions
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions
 {
     public static class IdentityServerBuilderExtensions
     {

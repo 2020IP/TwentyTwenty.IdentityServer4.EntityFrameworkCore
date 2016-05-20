@@ -1,12 +1,12 @@
 ﻿using IdentityServer4.Core.Services;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Models = IdentityServer4.Core.Models;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Stores
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
     public class ClientStore<TKey> : IClientStore
         where TKey : IEquatable<TKey>
@@ -29,7 +29,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Stores
                 .Include(x => x.AllowedScopes)
                 .Include(x => x.IdentityProviderRestrictions)
                 .Include(x => x.Claims)
-                .Include(x => x.AllowedCustomGrantTypes)
                 .Include(x => x.AllowedCorsOrigins)
                 .SingleOrDefaultAsync(x => x.ClientId == clientId);
 

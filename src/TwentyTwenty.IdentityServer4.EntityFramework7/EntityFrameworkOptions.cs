@@ -2,11 +2,11 @@
 using IdentityServer4.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Services;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Stores;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 {
     public class EntityFrameworkOptions
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Security.Claims;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
     public class ClaimLite
     {

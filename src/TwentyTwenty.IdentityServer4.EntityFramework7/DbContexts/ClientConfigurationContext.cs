@@ -1,10 +1,9 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
     public class ClientConfigurationContext<TKey> : BaseContext
         where TKey : IEquatable<TKey>
@@ -25,7 +24,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
                 b.HasMany(e => e.PostLogoutRedirectUris).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.AllowedScopes).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.IdentityProviderRestrictions).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
-                b.HasMany(e => e.AllowedCustomGrantTypes).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.ClientSecrets).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasMany(e => e.AllowedCorsOrigins).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);
                 b.HasIndex(e => e.ClientId).IsUnique();
@@ -44,10 +42,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
             modelBuilder.Entity<ClientCorsOrigin<TKey>>()
                 .ToTable(EfConstants.TableNames.ClientCorsOrigin)
                 .Property(e => e.Origin).IsRequired().HasMaxLength(150);
-
-            modelBuilder.Entity<ClientCustomGrantType<TKey>>()
-                .ToTable(EfConstants.TableNames.ClientCustomGrantType)
-                .Property(e => e.GrantType).IsRequired().HasMaxLength(250);
 
             modelBuilder.Entity<ClientPostLogoutRedirectUri<TKey>>()
                 .ToTable(EfConstants.TableNames.ClientPostLogoutRedirectUri)
@@ -89,7 +83,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
         //                    RegisterDeleteOnRemove(item.AllowedScopes);
         //                    RegisterDeleteOnRemove(item.IdentityProviderRestrictions);
         //                    RegisterDeleteOnRemove(item.Claims);
-        //                    RegisterDeleteOnRemove(item.AllowedCustomGrantTypes);
         //                    RegisterDeleteOnRemove(item.AllowedCorsOrigins);
         //                }
         //            }

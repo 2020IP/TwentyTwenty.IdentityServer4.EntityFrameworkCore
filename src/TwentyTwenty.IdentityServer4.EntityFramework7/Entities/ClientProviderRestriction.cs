@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
     public class ClientProviderRestriction<TKey>
         where TKey : IEquatable<TKey>

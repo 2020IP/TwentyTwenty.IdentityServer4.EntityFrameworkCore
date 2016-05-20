@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
     public class ClaimsPrincipalLite
     {

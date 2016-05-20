@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
     public class ScopeSecret<TKey> where TKey : IEquatable<TKey>
     {

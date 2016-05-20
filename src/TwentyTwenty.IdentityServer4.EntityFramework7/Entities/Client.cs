@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
     public class Client<TKey>
         where TKey : IEquatable<TKey>
@@ -30,9 +30,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
 
         public virtual bool AllowRememberConsent { get; set; }
 
-        public virtual Flows Flow { get; set; }
-
-        public virtual bool AllowClientCredentialsOnly { get; set; }
+        public virtual GrantTypes AllowedGrantTypes { get; set; }
 
         public virtual ICollection<ClientRedirectUri<TKey>> RedirectUris { get; set; }
 
@@ -80,10 +78,8 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
 
         public virtual bool PrefixClientClaims { get; set; }
 
-        public virtual bool AllowAccessToAllGrantTypes { get; set; }
-
-        public virtual ICollection<ClientCustomGrantType<TKey>> AllowedCustomGrantTypes { get; set; }
-
         public virtual ICollection<ClientCorsOrigin<TKey>> AllowedCorsOrigins { get; set; }
+
+        public bool AllowAccessTokensViaBrowser { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
     public class Scope<TKey> where TKey : IEquatable<TKey>
     {

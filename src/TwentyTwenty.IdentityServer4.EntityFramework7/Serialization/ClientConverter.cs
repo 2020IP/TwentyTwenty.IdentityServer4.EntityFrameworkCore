@@ -3,7 +3,7 @@ using IdentityServer4.Core.Services;
 using Newtonsoft.Json;
 using System;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
     public class ClientLite
     {

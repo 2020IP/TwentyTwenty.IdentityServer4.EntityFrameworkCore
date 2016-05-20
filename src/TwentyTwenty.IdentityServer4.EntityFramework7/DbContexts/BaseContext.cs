@@ -1,7 +1,6 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
     public abstract class BaseContext : DbContext
     {

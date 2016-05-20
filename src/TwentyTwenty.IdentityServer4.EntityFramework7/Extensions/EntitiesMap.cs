@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Extensions;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
 using Models = IdentityServer4.Core.Models;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
     public static class EntitiesMap<TKey> where TKey : IEquatable<TKey>
     {
@@ -23,8 +23,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
                 .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? new DateTimeOffset(src.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?)));
             Mapper.CreateMap<Client<TKey>, Models.Client>(MemberList.Destination)
                 .ForMember(x => x.UpdateAccessTokenClaimsOnRefresh, opt => opt.MapFrom(src => src.UpdateAccessTokenOnRefresh))
-                .ForMember(x => x.AllowAccessToAllCustomGrantTypes, opt => opt.MapFrom(src => src.AllowAccessToAllGrantTypes))
-                .ForMember(x => x.AllowedCustomGrantTypes, opt => opt.MapFrom(src => src.AllowedCustomGrantTypes.Select(x => x.GrantType)))
                 .ForMember(x => x.RedirectUris, opt => opt.MapFrom(src => src.RedirectUris.Select(x => x.Uri)))
                 .ForMember(x => x.PostLogoutRedirectUris, opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => x.Uri)))
                 .ForMember(x => x.IdentityProviderRestrictions, opt => opt.MapFrom(src => src.IdentityProviderRestrictions.Select(x => x.Provider)))
@@ -80,10 +78,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Entities
             if (s.Claims == null)
             {
                 s.Claims = new List<ClientClaim<TKey>>();
-            }
-            if (s.AllowedCustomGrantTypes == null)
-            {
-                s.AllowedCustomGrantTypes = new List<ClientCustomGrantType<TKey>>();
             }
             if (s.AllowedCorsOrigins == null)
             {

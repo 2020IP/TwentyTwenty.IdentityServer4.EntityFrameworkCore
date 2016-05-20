@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Extensions
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions
 {
     internal static class StringExtensions
     {

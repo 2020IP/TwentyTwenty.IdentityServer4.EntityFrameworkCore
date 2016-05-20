@@ -4,7 +4,7 @@ using System.Linq;
 using IdentityServer4.Core.Models;
 using IdentityServer4.Core.Services;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
     public class ScopeLite
     {

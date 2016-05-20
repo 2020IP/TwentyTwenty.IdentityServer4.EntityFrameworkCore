@@ -1,10 +1,9 @@
-﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
     public class ScopeConfigurationContext<TKey> : BaseContext
         where TKey : IEquatable<TKey>

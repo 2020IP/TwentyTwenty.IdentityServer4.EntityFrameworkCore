@@ -1,13 +1,13 @@
 ﻿using IdentityServer4.Core.Models;
 using IdentityServer4.Core.Services;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFramework7.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFramework7.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Stores
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
     // TODO: FindAsync is slated to be back in the RTM of 7.0. 
     //      For how, Where and FirstOrDefaultAsync will have to make due

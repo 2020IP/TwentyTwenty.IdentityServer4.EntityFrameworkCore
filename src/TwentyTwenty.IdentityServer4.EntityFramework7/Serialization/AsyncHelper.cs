@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
     internal static class AsyncHelper
     {

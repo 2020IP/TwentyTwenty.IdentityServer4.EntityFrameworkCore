@@ -1,4 +1,4 @@
-﻿namespace TwentyTwenty.IdentityServer4.EntityFramework7
+﻿namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 {
     class EfConstants
     {
