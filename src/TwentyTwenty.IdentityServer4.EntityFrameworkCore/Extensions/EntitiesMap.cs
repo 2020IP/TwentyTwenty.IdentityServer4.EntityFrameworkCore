@@ -46,9 +46,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
             cfg.CreateMap<Consent, Models.Consent>(MemberList.Destination)
                 .ForMember(x => x.Scopes, opts => opts.MapFrom(src => src.Scopes.ParseScopes()))
                 .ForMember(x => x.Subject, opts => opts.MapFrom(src => src.SubjectId));
-
-            cfg.CreateMap<Token, Models.Token>(MemberList.Destination)
-                .ForAllMembers(opt => opt.MapFrom(src => JsonConvert.DeserializeObject<Models.Token>(src.JsonCode)));
         }
 
         public static Models.Scope ToModel(Scope<TKey> s)
@@ -119,22 +116,11 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
             if (s == null) return null;
             return Mapper.Map<Consent, Models.Consent>(s);
         }
-
-        public static Models.Token ToModel(Token s)
-        {
-            if (s == null) return null;
-            return Mapper.Map<Token, Models.Token>(s);
-        }
     }
 
     public static class MappingExtensions
     {
         public static Models.Consent ToModel(this Consent s)
-        {
-            return EntitiesMap.ToModel(s);
-        }
-
-        public static Models.Token ToModel(this Token s)
         {
             return EntitiesMap.ToModel(s);
         }

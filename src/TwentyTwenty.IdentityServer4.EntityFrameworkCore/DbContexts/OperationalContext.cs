@@ -29,7 +29,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
                 b.ToTable(EfConstants.TableNames.Token);
                 b.Property(e => e.SubjectId).HasMaxLength(200);
                 b.Property(e => e.ClientId).IsRequired().HasMaxLength(200);
-                b.Property(e => e.JsonCode).IsRequired().HasColumnType("varchar(max)");
+                b.Property(e => e.JsonCode).IsRequired();
                 b.Property(e => e.Expiry).IsRequired();
                 b.HasKey(e => new { e.Key, e.TokenType });
             });                
