@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using IdentityModel;
 
 namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
 {
@@ -25,7 +26,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFramework7.Serialization
             if (source == null) return null;
 
             var claims = source.Claims.Select(x => new Claim(x.Type, x.Value));
-            var id = new ClaimsIdentity(claims, source.AuthenticationType, Constants.ClaimTypes.Name, Constants.ClaimTypes.Role);
+            var id = new ClaimsIdentity(claims, source.AuthenticationType, JwtClaimTypes.Name, JwtClaimTypes.Role);
             var target = new ClaimsPrincipal(id);
             return target;
         }
