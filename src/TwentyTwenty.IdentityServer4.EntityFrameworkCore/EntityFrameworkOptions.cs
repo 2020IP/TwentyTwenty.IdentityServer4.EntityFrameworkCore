@@ -18,12 +18,6 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
         public EntityFrameworkOptions(IIdentityServerBuilder builder)
         {
             _builder = builder;
-
-            Mapper.Initialize(cfg =>
-            {
-                EntitiesMap<TKey>.RegisterMappings(cfg);
-                ModelsMap<TKey>.RegisterMappings(cfg);
-            });
         }
 
         public EntityFrameworkOptions<TKey> RegisterOperationalStores()
