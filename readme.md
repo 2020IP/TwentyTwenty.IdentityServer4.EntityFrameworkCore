@@ -2,7 +2,7 @@
 
 ###Entity Framework Core persistence layer for [IdentityServer v4](https://github.com/IdentityServer/IdentityServer4)
 [![Build status](https://ci.appveyor.com/api/projects/status/wnvka7rjwx66wjk5/branch/master?svg=true)](https://ci.appveyor.com/project/2020IP/twentytwenty-identityserver4-entityframeworkcore/branch/master)
-[![NuGet](https://img.shields.io/nuget/v/TwentyTwenty.IdentityServer4.EntityFramework7.svg)](https://www.nuget.org/packages/TwentyTwenty.IdentityServer4.EntityFramework7/)
+[![NuGet](https://img.shields.io/nuget/v/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg)](https://www.nuget.org/packages/TwentyTwenty.IdentityServer4.EntityFrameworkCore/)
 
 #### Usage
 The primary key type can be configured for ClientStore and ScopeStore.  To facilitate this, subclass the `ClientConfigurationContext<TKey>` and `ScopeConfigurationContext<TKey>` with the desired key type.
@@ -34,23 +34,21 @@ public void ConfigureServices(IServiceCollection services)
 	...
 }
 ```
-Configure the `IdentityServerServiceFactory` to use the EF stores.
+Register the EFCore Contexts
 ```
-public void Configure(IApplicationBuilder app)
+public void ConfigureServices(IServiceCollection services)
 {
 	...
-	var factory = new IdentityServerServiceFactory();
-	factory.ConfigureEntityFramework<Guid>(app.ApplicationServices)
-		.RegisterOperationalStores()
-		.RegisterClientStore<ClientConfigurationContext>()
-		.RegisterScopeStore<ScopeConfigurationContext>();
-
-	owinAppBuilder.UseIdentityServer(new IdentityServerOptions
+	var builder = services.AddIdentityServer(options =>
 	{
-		...
-		Factory = factory,
-		...
+		options.SigningCertificate = new X509Certificate2("");
+		options.RequireSsl = false;
 	});
+
+	builder.ConfigureEntityFramework()
+		.RegisterOperationalStores()
+		.RegisterClientStore<Guid, ClientConfigurationContext>()
+		.RegisterScopeStore<Guid, ScopeConfigurationContext<>();
 	...
 }
 ```

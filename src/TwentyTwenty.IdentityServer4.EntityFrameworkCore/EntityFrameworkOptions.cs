@@ -10,8 +10,7 @@ using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 {
-    public class EntityFrameworkOptions<TKey>
-        where TKey : IEquatable<TKey>
+    public class EntityFrameworkOptions
     {
         private IIdentityServerBuilder _builder;
 
@@ -20,12 +19,12 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
             _builder = builder;
         }
 
-        public EntityFrameworkOptions<TKey> RegisterOperationalStores()
+        public EntityFrameworkOptions RegisterOperationalStores()
         {
             return RegisterOperationalStores<OperationalContext>();
         }
 
-        public EntityFrameworkOptions<TKey> RegisterOperationalStores<TOperationalContext>()
+        public EntityFrameworkOptions RegisterOperationalStores<TOperationalContext>()
             where TOperationalContext : OperationalContext
         {
             _builder.Services.AddScoped<OperationalContext, TOperationalContext>();
@@ -37,7 +36,8 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
             return this;
         }
 
-        public EntityFrameworkOptions<TKey> RegisterClientStore<TClientContext>()
+        public EntityFrameworkOptions RegisterClientStore<TKey, TClientContext>()
+            where TKey : IEquatable<TKey>
             where TClientContext : ClientConfigurationContext<TKey>
         {
             _builder.Services.AddScoped<ClientConfigurationContext<TKey>, TClientContext>();
@@ -47,7 +47,8 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
             return this;
         }
 
-        public EntityFrameworkOptions<TKey> RegisterScopeStore<TScopeContext>()
+        public EntityFrameworkOptions RegisterScopeStore<TKey, TScopeContext>()
+            where TKey : IEquatable<TKey>
             where TScopeContext : ScopeConfigurationContext<TKey>
         {
             _builder.Services.AddScoped<ScopeConfigurationContext<TKey>, TScopeContext>();
