@@ -1,5 +1,5 @@
 {
-  "version": "0.9.6-*",
+  "version": "0.9.9-*",
   "title": "20|20 IdentityServer4.EntityFrameworkCore",
   "description": "Entity Framework Core persistence layer for IdentityServer4",
   "authors": [ "2020IP" ],
@@ -25,7 +25,7 @@
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0-rc2-final"
   },
   "frameworks": {
-    "netstandard1.5": {
+    "netstandard1.0": {
       "imports": [
         "dnxcore50",
         "portable-net452+win81"
