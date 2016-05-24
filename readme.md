@@ -34,23 +34,21 @@ public void ConfigureServices(IServiceCollection services)
 	...
 }
 ```
-Configure the `IdentityServerServiceFactory` to use the EF stores.
+Register the EFCore Contexts
 ```
-public void Configure(IApplicationBuilder app)
+public void ConfigureServices(IServiceCollection services)
 {
 	...
-	var factory = new IdentityServerServiceFactory();
-	factory.ConfigureEntityFramework<Guid>(app.ApplicationServices)
-		.RegisterOperationalStores()
-		.RegisterClientStore<ClientConfigurationContext>()
-		.RegisterScopeStore<ScopeConfigurationContext>();
-
-	owinAppBuilder.UseIdentityServer(new IdentityServerOptions
+	var builder = services.AddIdentityServer(options =>
 	{
-		...
-		Factory = factory,
-		...
+		options.SigningCertificate = new X509Certificate2("");
+		options.RequireSsl = false;
 	});
+
+	builder.ConfigureEntityFramework()
+		.RegisterOperationalStores()
+		.RegisterClientStore<Guid, ClientConfigurationContext>()
+		.RegisterScopeStore<Guid, ScopeConfigurationContext<>();
 	...
 }
 ```
