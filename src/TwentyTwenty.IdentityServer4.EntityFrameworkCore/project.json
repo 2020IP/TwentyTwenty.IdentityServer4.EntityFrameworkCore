@@ -1,5 +1,5 @@
 {
-  "version": "0.9.9-*",
+  "version": "0.9.10-*",
   "title": "20|20 IdentityServer4.EntityFrameworkCore",
   "description": "Entity Framework Core persistence layer for IdentityServer4",
   "authors": [ "2020IP" ],
