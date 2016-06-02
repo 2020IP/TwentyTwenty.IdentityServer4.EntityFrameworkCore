@@ -29,6 +29,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
         {
             var scopes = _context.Scopes
                 .Include(e => e.ScopeClaims)
+                .Include( e => e.ScopeSecrets )
                 .AsQueryable();
 
             if (scopeNames != null && scopeNames.Any())
@@ -44,6 +45,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
         {
             var scopes = _context.Scopes
                 .Include(e => e.ScopeClaims)
+                .Include(e => e.ScopeSecrets)
                 .AsQueryable();
 
             if (publicOnly)
