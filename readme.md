@@ -53,4 +53,4 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 #### Contributing
-To get started, [sign the Contributor License Agreement](https://www.clahub.com/agreements/2020IP/TwentyTwenty.IdentityServer4.EntityFramework7).
+To get started, [sign the Contributor License Agreement](https://www.clahub.com/agreements/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore).
