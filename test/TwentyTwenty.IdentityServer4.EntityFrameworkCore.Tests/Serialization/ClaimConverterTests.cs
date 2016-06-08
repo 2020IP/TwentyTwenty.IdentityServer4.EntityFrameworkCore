@@ -1,5 +1,4 @@
-﻿using IdentityServer4.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Security.Claims;
 using IdentityModel;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization;

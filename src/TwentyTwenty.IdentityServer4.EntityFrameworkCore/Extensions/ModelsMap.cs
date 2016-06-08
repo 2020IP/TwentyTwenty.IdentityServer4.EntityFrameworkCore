@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
-namespace IdentityServer4.Core.Models
+namespace IdentityServer4.Models
 {
     public class ModelsMapProfile<TKey> : Profile
         where TKey : IEquatable<TKey>

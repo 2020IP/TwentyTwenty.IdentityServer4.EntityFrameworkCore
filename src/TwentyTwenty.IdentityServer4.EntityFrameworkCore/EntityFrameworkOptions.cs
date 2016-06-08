@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using IdentityServer4.Core.Models;
-using IdentityServer4.Core.Services;
+using IdentityServer4.Models;
+using IdentityServer4.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
