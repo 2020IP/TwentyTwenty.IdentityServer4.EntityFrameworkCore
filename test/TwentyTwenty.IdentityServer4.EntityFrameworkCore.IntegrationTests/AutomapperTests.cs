@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Xunit;
-using Models = IdentityServer4.Core.Models;
+using Models = IdentityServer4.Models;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests
 {

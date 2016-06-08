@@ -1,5 +1,5 @@
-﻿using IdentityServer4.Core.Models;
-using IdentityServer4.Core.Services.InMemory;
+﻿using IdentityServer4.Models;
+using IdentityServer4.Services.InMemory;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization;

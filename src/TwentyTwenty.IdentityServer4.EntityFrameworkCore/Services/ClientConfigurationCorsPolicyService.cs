@@ -1,4 +1,4 @@
-﻿using IdentityServer4.Core.Services;
+﻿using IdentityServer4.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

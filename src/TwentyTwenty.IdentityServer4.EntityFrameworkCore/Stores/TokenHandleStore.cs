@@ -1,5 +1,5 @@
-﻿using IdentityServer4.Core.Models;
-using IdentityServer4.Core.Services;
+﻿using IdentityServer4.Models;
+using IdentityServer4.Services;
 using System;
 using System.Threading.Tasks;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;

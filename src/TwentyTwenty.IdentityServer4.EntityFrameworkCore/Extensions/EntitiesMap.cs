@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
-using Models = IdentityServer4.Core.Models;
+using Models = IdentityServer4.Models;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
