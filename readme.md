@@ -26,11 +26,16 @@ In the `Startup.cs`, register your DbContexts with Entity Framework
 public void ConfigureServices(IServiceCollection services)
 {
 	...
-	services.AddEntityFramework()
-		.AddSqlServer()
-		.AddDbContext<ClientConfigurationContext>(o => o.UseSqlServer(connectionString))
-		.AddDbContext<ScopeConfigurationContext>(o => o.UseSqlServer(connectionString))
-		.AddDbContext<OperationalContext>(o => o.UseSqlServer(connectionString));
+	services.AddEntityFrameworkSqlServer()
+		.AddDbContext<ClientConfigurationContext>(o => o
+			.UseSqlServer(connectionString, b =>
+			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
+		.AddDbContext<ScopeConfigurationContext>(o => o
+			.UseSqlServer((connectionString, , b =>
+			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
+		.AddDbContext<OperationalContextEx>(o => o
+			.UseSqlServer((connectionString, , b =>
+			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)));
 	...
 }
 ```
@@ -41,7 +46,6 @@ public void ConfigureServices(IServiceCollection services)
 	...
 	var builder = services.AddIdentityServer(options =>
 	{
-		options.SigningCertificate = new X509Certificate2("");
 		options.RequireSsl = false;
 	});
 
