@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+﻿using IdentityServer4.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores;
 

@@ -1,5 +1,5 @@
 {
-  "version": "0.9.12-*",
+  "version": "1.0.0-*",
   "title": "20|20 IdentityServer4.EntityFrameworkCore",
   "description": "Entity Framework Core persistence layer for IdentityServer4",
   "authors": [ "2020IP" ],
@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "AutoMapper": "4.2.1",
-    "Newtonsoft.Json": "8.0.4-beta1",
-    "IdentityServer4": "1.0.0-beta3" ,
-    "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final",
-    "Microsoft.EntityFrameworkCore": "1.0.0-rc2-final",
-    "Microsoft.EntityFrameworkCore.Relational": "1.0.0-rc2-final"
+    "Newtonsoft.Json": "9.0.1",
+    "IdentityServer4": "1.0.0-beta4-update1",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
+    "Microsoft.EntityFrameworkCore": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Relational": "1.0.0"
   },
   "frameworks": {
     "netstandard1.0": {
