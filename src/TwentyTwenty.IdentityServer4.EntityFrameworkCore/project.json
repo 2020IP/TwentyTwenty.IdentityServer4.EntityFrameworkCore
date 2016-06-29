@@ -17,7 +17,6 @@
     "defaultNamespace": "TwentyTwenty.IdentityServer4.EntityFrameworkCore"
   },
   "dependencies": {
-    "AutoMapper": "4.2.1",
     "Newtonsoft.Json": "9.0.1",
     "IdentityServer4": "1.0.0-beta4-update1",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
@@ -25,11 +24,6 @@
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0"
   },
   "frameworks": {
-    "netstandard1.0": {
-      "imports": [
-        "dnxcore50",
-        "portable-net452+win81"
-      ]
-    }
+    "netstandard1.4": { }
   }
 }

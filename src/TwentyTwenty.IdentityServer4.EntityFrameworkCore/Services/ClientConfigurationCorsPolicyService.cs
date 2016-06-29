@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services
 {

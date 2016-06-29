@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions
+namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 {
-    internal static class StringExtensions
+    internal static class Extensions
     {
+        public static IEnumerable<T> ToEnumerableOrEmpty<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable ?? Enumerable.Empty<T>();
+        }
+
         public static string GetOrigin(this string url)
         {
             if (url != null && (url.StartsWith("http://") || url.StartsWith("https://")))

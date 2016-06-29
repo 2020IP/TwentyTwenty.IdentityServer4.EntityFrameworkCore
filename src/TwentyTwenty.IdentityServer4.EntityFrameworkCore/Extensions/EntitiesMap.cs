@@ -1,151 +1,114 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
 using Models = IdentityServer4.Models;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 {
-    public class EntitiesKeyedMapProfile<TKey> : Profile
-        where TKey : IEquatable<TKey>
-    {
-        protected override void Configure()
-        {
-            CreateMap<Scope<TKey>, Models.Scope>(MemberList.Destination)
-                .ForMember(x => x.Claims, opts => opts.MapFrom(src => src.ScopeClaims.Select(x => x)));
-            CreateMap<ScopeClaim<TKey>, Models.ScopeClaim>(MemberList.Destination);
-            CreateMap<ScopeSecret<TKey>, Models.Secret>(MemberList.Destination)
-                .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? new DateTimeOffset(src.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?)));
-
-            CreateMap<ClientSecret<TKey>, Models.Secret>(MemberList.Destination)
-                .ForMember(x => x.Expiration, opt => opt.MapFrom(src => src.Expiration.HasValue ? new DateTimeOffset(src.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?)));
-            CreateMap<Client<TKey>, Models.Client>(MemberList.Destination)
-                .ForMember(x => x.UpdateAccessTokenClaimsOnRefresh, opt => opt.MapFrom(src => src.UpdateAccessTokenOnRefresh))
-                .ForMember(x => x.RedirectUris, opt => opt.MapFrom(src => src.RedirectUris.Select(x => x.Uri)))
-                .ForMember(x => x.PostLogoutRedirectUris, opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => x.Uri)))
-                .ForMember(x => x.IdentityProviderRestrictions, opt => opt.MapFrom(src => src.IdentityProviderRestrictions.Select(x => x.Provider)))
-                .ForMember(x => x.AllowedScopes, opt => opt.MapFrom(src => src.AllowedScopes.Select(x => x.Scope)))
-                .ForMember(x => x.AllowedCorsOrigins, opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => x.Origin)))
-                .ForMember(x => x.AllowedGrantTypes, opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => x.GrantType)))
-                .ForMember(x => x.Claims, opt => opt.MapFrom(src => src.Claims.Select(x => new Claim(x.Type, x.Value))));
-
-            CreateMap<Consent, Models.Consent>(MemberList.Destination)
-                .ForMember(x => x.Scopes, opts => opts.MapFrom(src => src.Scopes.ParseScopes()))
-                .ForMember(x => x.Subject, opts => opts.MapFrom(src => src.SubjectId));
-        }
-    }
-
-    public class EntitiesMapProfile : Profile
-    {
-        protected override void Configure()
-        {
-            CreateMap<Consent, Models.Consent>(MemberList.Destination)
-                .ForMember(x => x.Scopes, opts => opts.MapFrom(src => src.Scopes.ParseScopes()))
-                .ForMember(x => x.Subject, opts => opts.MapFrom(src => src.SubjectId));
-        }
-    }
-
-    public static class EntitiesMap<TKey> where TKey : IEquatable<TKey>
-    {
-        static EntitiesMap()
-        {
-            Mapper.Configuration.AddProfile<EntitiesKeyedMapProfile<TKey>>();
-        }
-
-        public static Models.Scope ToModel(Scope<TKey> s)
-        {
-            if (s == null)
-            {
-                return null;
-            }
-            if (s.ScopeClaims == null)
-            {
-                s.ScopeClaims = new List<ScopeClaim<TKey>>();
-            }
-            if (s.ScopeSecrets == null)
-            {
-                s.ScopeSecrets = new List<ScopeSecret<TKey>>();
-            }
-
-            return Mapper.Map<Scope<TKey>, Models.Scope>(s);
-        }
-
-        public static Models.Client ToModel(Client<TKey> s)
-        {
-            if (s == null)
-            {
-                return null;
-            }
-            if (s.ClientSecrets == null)
-            {
-                s.ClientSecrets = new List<ClientSecret<TKey>>();
-            }
-            if (s.RedirectUris == null)
-            {
-                s.RedirectUris = new List<ClientRedirectUri<TKey>>();
-            }
-            if (s.PostLogoutRedirectUris == null)
-            {
-                s.PostLogoutRedirectUris = new List<ClientPostLogoutRedirectUri<TKey>>();
-            }
-            if (s.AllowedScopes == null)
-            {
-                s.AllowedScopes = new List<ClientScope<TKey>>();
-            }
-            if (s.IdentityProviderRestrictions == null)
-            {
-                s.IdentityProviderRestrictions = new List<ClientProviderRestriction<TKey>>();
-            }
-            if (s.Claims == null)
-            {
-                s.Claims = new List<ClientClaim<TKey>>();
-            }
-            if (s.AllowedCorsOrigins == null)
-            {
-                s.AllowedCorsOrigins = new List<ClientCorsOrigin<TKey>>();
-            }
-            if (s.AllowedGrantTypes == null)
-            {
-                s.AllowedGrantTypes = new List<ClientGrantType<TKey>>();
-            }
-
-            return Mapper.Map<Client<TKey>, Models.Client>(s);
-        }
-    }
-
-    public static class EntitiesMap
-    {
-        static EntitiesMap()
-        {
-            Mapper.Configuration.AddProfile<EntitiesMapProfile>();
-        }
-
-        public static Models.Consent ToModel(Consent s)
-        {
-            if (s == null) return null;
-            return Mapper.Map<Consent, Models.Consent>(s);
-        }
-    }
-
     public static class MappingExtensions
     {
         public static Models.Consent ToModel(this Consent s)
         {
-            return EntitiesMap.ToModel(s);
+            if (s == null)
+            {
+                return null;
+            }
+
+            return new Models.Consent
+            {
+                ClientId = s.ClientId,
+                Subject = s.SubjectId,
+                Scopes = s.Scopes.ParseScopes(),
+            };
         }
 
         public static Models.Scope ToModel<TKey>(this Scope<TKey> s)
             where TKey : IEquatable<TKey>
         {
-            return EntitiesMap<TKey>.ToModel(s);
+            if (s == null)
+            {
+                return null;
+            }
+
+            return new Models.Scope
+            {
+                AllowUnrestrictedIntrospection = s.AllowUnrestrictedIntrospection,
+                ClaimsRule = s.ClaimsRule,
+                Description = s.Description,
+                DisplayName = s.DisplayName,
+                ShowInDiscoveryDocument = s.ShowInDiscoveryDocument,
+                Emphasize = s.Emphasize,
+                Enabled = s.Enabled,
+                IncludeAllClaimsForUser = s.IncludeAllClaimsForUser,
+                Name = s.Name,
+                Required = s.Required,
+                Type = (Models.ScopeType)s.Type,
+                Claims = s.ScopeClaims.ToEnumerableOrEmpty().Select(x => new Models.ScopeClaim
+                {
+                    AlwaysIncludeInIdToken = x.AlwaysIncludeInIdToken,
+                    Description = x.Description,
+                    Name = x.Name,
+                }).ToList(),
+                ScopeSecrets = s.ScopeSecrets.ToEnumerableOrEmpty().Select(x => new Models.Secret
+                {
+                    Description = x.Description,
+                    Expiration = x.Expiration.HasValue ? new DateTimeOffset(x.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?),
+                    Type = x.Type,
+                    Value = x.Value,
+                }).ToList(),
+            };
         }
 
         public static Models.Client ToModel<TKey>(this Client<TKey> s)
             where TKey : IEquatable<TKey>
         {
-            return EntitiesMap<TKey>.ToModel(s);
+            if (s == null)
+            {
+                return null;
+            }
+
+            return new Models.Client
+            {
+                AbsoluteRefreshTokenLifetime = s.AbsoluteRefreshTokenLifetime,
+                AccessTokenLifetime = s.AccessTokenLifetime,
+                AccessTokenType = s.AccessTokenType,
+                AllowAccessToAllScopes = s.AllowAccessToAllScopes,
+                AllowAccessTokensViaBrowser = s.AllowAccessTokensViaBrowser,
+                AllowPromptNone = s.AllowPromptNone,
+                AllowRememberConsent = s.AllowRememberConsent,
+                AlwaysSendClientClaims = s.AlwaysSendClientClaims,
+                AuthorizationCodeLifetime = s.AuthorizationCodeLifetime,
+                AllowedScopes = s.AllowedScopes.ToEnumerableOrEmpty().Select(x => x.Scope).ToList(),
+                AllowedGrantTypes = s.AllowedGrantTypes.ToEnumerableOrEmpty().Select(x => x.GrantType).ToList(),
+                AllowedCorsOrigins = s.AllowedCorsOrigins.ToEnumerableOrEmpty().Select(x => x.Origin).ToList(),
+                Claims = s.Claims.ToEnumerableOrEmpty().Select(x => new Claim(x.Type, x.Value)).ToList(),
+                ClientId = s.ClientId,
+                ClientName = s.ClientName,
+                ClientSecrets = s.ClientSecrets.ToEnumerableOrEmpty().Select(x => new Models.Secret
+                {
+                    Description = x.Description,
+                    Expiration = x.Expiration.HasValue ? new DateTimeOffset(x.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?),
+                    Type = x.Type,
+                    Value = x.Value,
+                }).ToList(),
+                ClientUri = s.ClientUri,
+                Enabled = s.Enabled,
+                EnableLocalLogin = s.EnableLocalLogin,
+                IdentityProviderRestrictions = s.IdentityProviderRestrictions.ToEnumerableOrEmpty().Select(x => x.Provider).ToList(),
+                IdentityTokenLifetime = s.IdentityTokenLifetime,
+                IncludeJwtId = s.IncludeJwtId,
+                LogoUri = s.LogoUri,
+                LogoutSessionRequired = s.LogoutSessionRequired,
+                LogoutUri = s.LogoutUri,
+                PostLogoutRedirectUris = s.PostLogoutRedirectUris.ToEnumerableOrEmpty().Select(x => x.Uri).ToList(),
+                PrefixClientClaims = s.PrefixClientClaims,
+                RedirectUris = s.RedirectUris.ToEnumerableOrEmpty().Select(x => x.Uri).ToList(),
+                RefreshTokenExpiration = s.RefreshTokenExpiration,
+                RefreshTokenUsage = s.RefreshTokenUsage,
+                RequireConsent = s.RequireConsent,
+                SlidingRefreshTokenLifetime = s.SlidingRefreshTokenLifetime,
+                UpdateAccessTokenClaimsOnRefresh = s.UpdateAccessTokenOnRefresh,
+            };
         }
     }
 }

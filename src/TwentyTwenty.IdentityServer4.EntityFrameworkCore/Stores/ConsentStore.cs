@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Extensions;
 using Models = IdentityServer4.Models;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
