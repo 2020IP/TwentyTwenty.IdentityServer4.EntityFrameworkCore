@@ -12,6 +12,10 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
             : base(options)
         { }
 
+        public ClientConfigurationContext(DbContextOptions<ClientConfigurationContext<TKey>> options)
+            : base(options)
+        { }
+        
         public DbSet<Client<TKey>> Clients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

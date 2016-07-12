@@ -9,6 +9,10 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
             : base(options)
         { }
 
+        public OperationalContext(DbContextOptions<OperationalContext> options)
+            : base(options)
+        { }
+
         public DbSet<Consent> Consents { get; set; }
 
         public DbSet<Token> Tokens { get; set; }

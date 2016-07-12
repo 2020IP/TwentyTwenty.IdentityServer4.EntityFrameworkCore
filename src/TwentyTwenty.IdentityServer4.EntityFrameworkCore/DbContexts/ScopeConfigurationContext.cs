@@ -12,6 +12,10 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
             : base(options)
         { }
 
+        public ScopeConfigurationContext(DbContextOptions<ScopeConfigurationContext<TKey>> options)
+            : base(options)
+        { }
+
         public DbSet<Scope<TKey>> Scopes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
