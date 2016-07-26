@@ -1,7 +1,8 @@
 #20|20 IdentityServer4.EntityFrameworkCore
 
 ###Entity Framework Core persistence layer for [IdentityServer v4](https://github.com/IdentityServer/IdentityServer4)
-[![Build status](https://ci.appveyor.com/api/projects/status/wnvka7rjwx66wjk5/branch/master?svg=true)](https://ci.appveyor.com/project/2020IP/twentytwenty-identityserver4-entityframework7/branch/master)
+[![Windows build status](https://ci.appveyor.com/api/projects/status/wnvka7rjwx66wjk5/branch/master?svg=true)](https://ci.appveyor.com/project/2020IP/twentytwenty-identityserver4-entityframework7/branch/master)
+[![OSX & Linux build status](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg?branch=master)](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore)
 [![NuGet](https://img.shields.io/nuget/v/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg)](https://www.nuget.org/packages/TwentyTwenty.IdentityServer4.EntityFrameworkCore/)
 
 #### Usage

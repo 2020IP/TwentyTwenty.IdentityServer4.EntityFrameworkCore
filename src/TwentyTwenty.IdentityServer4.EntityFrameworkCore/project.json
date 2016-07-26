@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1-*",
+  "version": "1.1.0-*",
   "title": "20|20 IdentityServer4.EntityFrameworkCore",
   "description": "Entity Framework Core persistence layer for IdentityServer4",
   "authors": [ "2020IP" ],
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
-    "IdentityServer4": "1.0.0-beta4-update1",
+    "IdentityServer4": "1.0.0-beta5",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0"
