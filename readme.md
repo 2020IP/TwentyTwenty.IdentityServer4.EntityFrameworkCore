@@ -10,14 +10,14 @@ The primary key type can be configured for ClientStore and ScopeStore.  To facil
 ```
 public class ClientConfigurationContext : ClientConfigurationContext<Guid>
 {
-	public ClientConfigurationContext(DbContextOptions options)
+	public ClientConfigurationContext(DbContextOptions<ClientConfigurationContext> options)
 		: base(options)
 	{ }
 }
 
 public class ScopeConfigurationContext : ScopeConfigurationContext<Guid>
 {
-	public ScopeConfigurationContext(DbContextOptions options)
+	public ScopeConfigurationContext(DbContextOptions<ScopeConfigurationContext> options)
 		: base(options)
 	{ }
 }
