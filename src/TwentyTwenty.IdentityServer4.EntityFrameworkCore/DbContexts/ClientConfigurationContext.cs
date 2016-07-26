@@ -5,13 +5,9 @@ using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
-    public class ClientConfigurationContext<TKey> : BaseContext
+    public class ClientConfigurationContext<TKey> : DbContext
         where TKey : IEquatable<TKey>
     {
-        public ClientConfigurationContext(DbContextOptions options)
-            : base(options)
-        { }
-
         public ClientConfigurationContext(DbContextOptions<ClientConfigurationContext<TKey>> options)
             : base(options)
         { }
@@ -76,26 +72,5 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
                 b.Property(e => e.Description).HasMaxLength(2000);
             });                
         }
-
-        //protected override void ConfigureChildCollections()
-        //{
-        //    this.Set<Client>().Local.CollectionChanged +=
-        //        delegate (object sender, NotifyCollectionChangedEventArgs e)
-        //        {
-        //            if (e.Action == NotifyCollectionChangedAction.Add)
-        //            {
-        //                foreach (Client item in e.NewItems)
-        //                {
-        //                    RegisterDeleteOnRemove(item.ClientSecrets);
-        //                    RegisterDeleteOnRemove(item.RedirectUris);
-        //                    RegisterDeleteOnRemove(item.PostLogoutRedirectUris);
-        //                    RegisterDeleteOnRemove(item.AllowedScopes);
-        //                    RegisterDeleteOnRemove(item.IdentityProviderRestrictions);
-        //                    RegisterDeleteOnRemove(item.Claims);
-        //                    RegisterDeleteOnRemove(item.AllowedCorsOrigins);
-        //                }
-        //            }
-        //        };
-        //}
     }
 }

@@ -3,12 +3,8 @@ using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
-    public class OperationalContext : BaseContext
+    public class OperationalContext : DbContext
     {
-        public OperationalContext(DbContextOptions options)
-            : base(options)
-        { }
-
         public OperationalContext(DbContextOptions<OperationalContext> options)
             : base(options)
         { }

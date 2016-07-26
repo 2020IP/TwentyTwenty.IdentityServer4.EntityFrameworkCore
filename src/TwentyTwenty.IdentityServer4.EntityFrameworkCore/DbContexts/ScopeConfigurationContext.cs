@@ -5,7 +5,7 @@ using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
-    public class ScopeConfigurationContext<TKey> : BaseContext
+    public class ScopeConfigurationContext<TKey> : DbContext
         where TKey : IEquatable<TKey>
     {
         public ScopeConfigurationContext(DbContextOptions options)
@@ -46,19 +46,5 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
                 b.Property(e => e.ClaimsRule).HasMaxLength(200);
             });
         }
-        //protected override void ConfigureChildCollections()
-        //{
-        //    this.Set<Scope>().Local.CollectionChanged +=
-        //        delegate (object sender, NotifyCollectionChangedEventArgs e)
-        //        {
-        //            if (e.Action == NotifyCollectionChangedAction.Add)
-        //            {
-        //                foreach (Scope item in e.NewItems)
-        //                {
-        //                    RegisterDeleteOnRemove(item.ScopeClaims);
-        //                }
-        //            }
-        //        };
-        //}
     }
 }

@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "xunit": "2.2.0-beta2-build3300",
-    "TwentyTwenty.IdentityServer4.EntityFrameworkCore": "1.0.0-*",
+    "TwentyTwenty.IdentityServer4.EntityFrameworkCore": { "target": "project" },
     "dotnet-test-xunit": "2.2.0-preview2-build1029"
   },
   "frameworks": {

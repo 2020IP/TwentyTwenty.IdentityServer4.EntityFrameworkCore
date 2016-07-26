@@ -10,7 +10,7 @@
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
-    "TwentyTwenty.IdentityServer4.EntityFrameworkCore": "1.0.0-*"
+    "TwentyTwenty.IdentityServer4.EntityFrameworkCore": {"target": "project" }
   },
   "frameworks": {
     "netcoreapp1.0": {

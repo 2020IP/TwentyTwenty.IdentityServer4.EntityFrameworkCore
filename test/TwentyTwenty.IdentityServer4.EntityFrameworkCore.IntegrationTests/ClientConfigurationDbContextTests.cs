@@ -10,7 +10,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.IntegrationTests
     public class ClientConfigurationDbContextTests
     {
         private const string ConfigConnectionStringName = "Config";
-        private DbContextOptions _options;
+        private DbContextOptions<ClientConfigurationContext<int>> _options;
 
         public ClientConfigurationDbContextTests()
         {
