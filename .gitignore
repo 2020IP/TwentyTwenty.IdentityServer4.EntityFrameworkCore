@@ -209,3 +209,7 @@ FakesAssemblies/
 
 # NuGet exe
 .nuget
+
+# OSX
+.DS_Store
+._.DS_Store
