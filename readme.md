@@ -32,10 +32,10 @@ public void ConfigureServices(IServiceCollection services)
 			.UseSqlServer(connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
 		.AddDbContext<ScopeConfigurationContext>(o => o
-			.UseSqlServer((connectionString, , b =>
+			.UseSqlServer((connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
-		.AddDbContext<OperationalContextEx>(o => o
-			.UseSqlServer((connectionString, , b =>
+		.AddDbContext<OperationalContext>(o => o
+			.UseSqlServer((connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)));
 	...
 }
@@ -53,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 	builder.ConfigureEntityFramework()
 		.RegisterOperationalStores()
 		.RegisterClientStore<Guid, ClientConfigurationContext>()
-		.RegisterScopeStore<Guid, ScopeConfigurationContext<>();
+		.RegisterScopeStore<Guid, ScopeConfigurationContext>();
 	...
 }
 ```
