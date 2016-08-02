@@ -5,7 +5,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
     public class OperationalContext : DbContext
     {
-        public OperationalContext(DbContextOptions<OperationalContext> options)
+        public OperationalContext(DbContextOptions options)
             : base(options)
         { }
 

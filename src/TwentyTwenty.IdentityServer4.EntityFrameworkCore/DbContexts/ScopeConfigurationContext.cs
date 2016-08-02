@@ -8,7 +8,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
     public class ScopeConfigurationContext<TKey> : DbContext
         where TKey : IEquatable<TKey>
     {
-        public ScopeConfigurationContext(DbContextOptions<ScopeConfigurationContext<TKey>> options)
+        public ScopeConfigurationContext(DbContextOptions options)
             : base(options)
         { }
 

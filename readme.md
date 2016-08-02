@@ -22,6 +22,15 @@ public class ScopeConfigurationContext : ScopeConfigurationContext<Guid>
 	{ }
 }
 ```
+In order to enable extensibility of the `OperationalContext`, it must be subclassed. The main reason behind this is EFCore requires the `DbContextOptions` constructor to supply a type, which we cannot set to `OperationalContext` as it will not allow this class to be extensible.
+```
+public class OperationalContextEx : OperationalContext
+{
+	public OperationalContext(DbContextOptions<OperationalContextEx> options)
+		: base(options)
+	{ }
+}
+```
 In the `Startup.cs`, register your DbContexts with Entity Framework
 ```
 public void ConfigureServices(IServiceCollection services)
