@@ -32,10 +32,10 @@ public void ConfigureServices(IServiceCollection services)
 			.UseSqlServer(connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
 		.AddDbContext<ScopeConfigurationContext>(o => o
-			.UseSqlServer((connectionString, b =>
+			.UseSqlServer(connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
 		.AddDbContext<OperationalContext>(o => o
-			.UseSqlServer((connectionString, b =>
+			.UseSqlServer(connectionString, b =>
 			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)));
 	...
 }
