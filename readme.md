@@ -26,7 +26,7 @@ In order to enable extensibility of the `OperationalContext`, it must be subclas
 ```
 public class OperationalContextEx : OperationalContext
 {
-	public OperationalContext(DbContextOptions<OperationalContextEx> options)
+	public OperationalContextEx(DbContextOptions<OperationalContextEx> options)
 		: base(options)
 	{ }
 }
