@@ -16,6 +16,11 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 
         public virtual ICollection<ClientSecret<TKey>> ClientSecrets { get; set; }
 
+        /// <summary>
+        /// If set to false, no client secret is needed to request tokens at the token endpoint (defaults to true)
+        /// </summary>
+        public bool RequireClientSecret { get; set; }
+
         public virtual string ClientName { get; set; }
 
         public virtual string ClientUri { get; set; }
@@ -27,6 +32,11 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
         public bool LogoutSessionRequired { get; set; }
 
         public virtual bool RequireConsent { get; set; }
+
+        /// <summary>
+        /// Specifies whether a proof key is required for authorization code based token requests
+        /// </summary>
+        public virtual bool RequirePkce { get; set; }
 
         public virtual bool AllowRememberConsent { get; set; }
 
@@ -60,7 +70,13 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
 
         public virtual bool AllowPromptNone { get; set; }
 
-        public virtual bool UpdateAccessTokenOnRefresh { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the access token (and its claims) should be updated on a refresh token request.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the token should be updated; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool UpdateAccessTokenClaimsOnRefresh { get; set; }
 
         public virtual TokenExpiration RefreshTokenExpiration { get; set; }
 

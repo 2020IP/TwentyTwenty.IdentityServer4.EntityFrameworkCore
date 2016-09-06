@@ -17,7 +17,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
             return new Models.Consent
             {
                 ClientId = s.ClientId,
-                Subject = s.SubjectId,
+                SubjectId = s.SubjectId,
                 Scopes = s.Scopes.ParseScopes(),
             };
         }
@@ -52,7 +52,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 ScopeSecrets = s.ScopeSecrets.ToEnumerableOrEmpty().Select(x => new Models.Secret
                 {
                     Description = x.Description,
-                    Expiration = x.Expiration.HasValue ? new DateTimeOffset(x.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?),
+                    Expiration = x.Expiration,
                     Type = x.Type,
                     Value = x.Value,
                 }).ToList(),
@@ -74,7 +74,8 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 AccessTokenType = s.AccessTokenType,
                 AllowAccessToAllScopes = s.AllowAccessToAllScopes,
                 AllowAccessTokensViaBrowser = s.AllowAccessTokensViaBrowser,
-                AllowPromptNone = s.AllowPromptNone,
+                RequirePkce = s.RequirePkce,
+                RequireClientSecret = s.RequireClientSecret,
                 AllowRememberConsent = s.AllowRememberConsent,
                 AlwaysSendClientClaims = s.AlwaysSendClientClaims,
                 AuthorizationCodeLifetime = s.AuthorizationCodeLifetime,
@@ -87,7 +88,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 ClientSecrets = s.ClientSecrets.ToEnumerableOrEmpty().Select(x => new Models.Secret
                 {
                     Description = x.Description,
-                    Expiration = x.Expiration.HasValue ? new DateTimeOffset(x.Expiration.Value, TimeSpan.Zero) : default(DateTimeOffset?),
+                    Expiration = x.Expiration,
                     Type = x.Type,
                     Value = x.Value,
                 }).ToList(),
@@ -107,7 +108,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities
                 RefreshTokenUsage = s.RefreshTokenUsage,
                 RequireConsent = s.RequireConsent,
                 SlidingRefreshTokenLifetime = s.SlidingRefreshTokenLifetime,
-                UpdateAccessTokenClaimsOnRefresh = s.UpdateAccessTokenOnRefresh,
+                UpdateAccessTokenClaimsOnRefresh = s.UpdateAccessTokenClaimsOnRefresh,
             };
         }
     }

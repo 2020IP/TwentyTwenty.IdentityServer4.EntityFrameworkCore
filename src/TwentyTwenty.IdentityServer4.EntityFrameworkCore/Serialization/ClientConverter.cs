@@ -1,5 +1,5 @@
 ﻿using IdentityServer4.Models;
-using IdentityServer4.Services;
+using IdentityServer4.Stores;
 using Newtonsoft.Json;
 using System;
 
@@ -16,7 +16,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 
         public ClientConverter(IClientStore clientStore)
         {
-            if (clientStore == null) throw new ArgumentNullException("clientStore");
+            if (clientStore == null) throw new ArgumentNullException(nameof(clientStore));
 
             _clientStore = clientStore;
         }

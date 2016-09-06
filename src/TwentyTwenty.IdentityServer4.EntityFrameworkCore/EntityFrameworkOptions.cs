@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Services;
+using IdentityServer4.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
@@ -25,10 +26,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
             where TOperationalContext : OperationalContext
         {
             _builder.Services.AddScoped<OperationalContext, TOperationalContext>();
-            _builder.Services.AddScoped<IAuthorizationCodeStore, AuthorizationCodeStore>();
-            _builder.Services.AddScoped<ITokenHandleStore, TokenHandleStore>();
-            _builder.Services.AddScoped<IConsentStore, ConsentStore>();
-            _builder.Services.AddScoped<IRefreshTokenStore, RefreshTokenStore>();
+            _builder.Services.AddScoped<IPersistedGrantService, PersistedGrantService>();
 
             return this;
         }

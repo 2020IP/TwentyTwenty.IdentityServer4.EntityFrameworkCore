@@ -32,7 +32,7 @@ namespace IdentityServer4.Models
             dest.ScopeSecrets = s.ScopeSecrets.ToEnumerableOrEmpty().Select(x => new ScopeSecret<TKey>
             {
                 Description = x.Description,
-                Expiration = x.Expiration.HasValue ? x.Expiration.Value.UtcDateTime : default(DateTime?),
+                Expiration = x.Expiration,
                 Type = x.Type,
                 Value = x.Value,
             }).ToArray();
@@ -55,7 +55,8 @@ namespace IdentityServer4.Models
             dest.AllowedCorsOrigins = s.AllowedCorsOrigins.ToEnumerableOrEmpty().Select(x => new ClientCorsOrigin<TKey> { Origin = x }).ToArray();
             dest.AllowedGrantTypes = s.AllowedGrantTypes.ToEnumerableOrEmpty().Select(x => new ClientGrantType<TKey> { GrantType = x }).ToArray();
             dest.AllowedScopes = s.AllowedScopes.ToEnumerableOrEmpty().Select(x => new ClientScope<TKey> { Scope = x }).ToArray();
-            dest.AllowPromptNone = s.AllowPromptNone;
+            dest.RequireClientSecret = s.RequireClientSecret;
+            dest.RequirePkce = s.RequirePkce;
             dest.AllowRememberConsent = s.AllowRememberConsent;
             dest.AlwaysSendClientClaims = s.AlwaysSendClientClaims;
             dest.AuthorizationCodeLifetime = s.AuthorizationCodeLifetime;
@@ -69,7 +70,7 @@ namespace IdentityServer4.Models
             dest.ClientSecrets = s.ClientSecrets.ToEnumerableOrEmpty().Select(x => new ClientSecret<TKey>
             {
                 Description = x.Description,
-                Expiration = x.Expiration.HasValue ? x.Expiration.Value.UtcDateTime : default(DateTime?),
+                Expiration = x.Expiration,
                 Type = x.Type,
                 Value = x.Value,
             }).ToArray();
@@ -89,7 +90,7 @@ namespace IdentityServer4.Models
             dest.RefreshTokenUsage = s.RefreshTokenUsage;
             dest.RequireConsent = s.RequireConsent;
             dest.SlidingRefreshTokenLifetime = s.SlidingRefreshTokenLifetime;
-            dest.UpdateAccessTokenOnRefresh = s.UpdateAccessTokenClaimsOnRefresh;
+            dest.UpdateAccessTokenClaimsOnRefresh = s.UpdateAccessTokenClaimsOnRefresh;
 
             return dest;
         }

@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using IdentityServer4.Models;
-using IdentityServer4.Services;
+using IdentityServer4.Stores;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 {
@@ -17,7 +17,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization
 
         public ScopeConverter(IScopeStore scopeStore)
         {
-            if (scopeStore == null) throw new ArgumentNullException("scopeStore");
+            if (scopeStore == null) throw new ArgumentNullException(nameof(scopeStore));
 
             this.scopeStore = scopeStore;
         }

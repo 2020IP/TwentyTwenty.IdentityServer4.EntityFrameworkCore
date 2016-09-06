@@ -1,5 +1,4 @@
-﻿using IdentityServer4.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +6,7 @@ using Models = IdentityServer4.Models;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using IdentityServer4.Stores;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
