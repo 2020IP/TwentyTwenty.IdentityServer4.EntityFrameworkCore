@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IdentityServer4.Models;
 using IdentityServer4.Stores;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using IdentityServer4.Stores.Serialization;
@@ -15,13 +15,14 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 {
     public class PersistedGrantService : IPersistedGrantService
     {
-        private readonly OperationalContext _context;
+        private readonly IOperationalContext _context;
         private readonly IScopeStore _scopeStore;
         private readonly IClientStore _clientStore;
 
-        public PersistedGrantService(OperationalContext context, IScopeStore scopeStore, IClientStore clientStore)
+        public PersistedGrantService(IOperationalContext context, IScopeStore scopeStore, IClientStore clientStore)
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
+            if (!(context is DbContext)) throw new ArgumentException("Operational context is not a Database Context", nameof(context));
             if (scopeStore == null) throw new ArgumentNullException(nameof(scopeStore));
             if (clientStore == null) throw new ArgumentNullException(nameof(clientStore));
 
@@ -110,7 +111,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
         {
             var tokens = _context.Tokens.ToArray();
             _context.Tokens.RemoveRange(tokens);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task RemoveAuthorizationCodeAsync(string code)
@@ -123,7 +124,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             if (token != null)
             {
                 _context.Tokens.Remove(token);
-                await _context.SaveChangesAsync();
+                await ((DbContext)_context).SaveChangesAsync();
             }
         }
 
@@ -137,7 +138,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             if (token != null)
             {
                 _context.Tokens.Remove(token);
-                await _context.SaveChangesAsync();
+                await ((DbContext)_context).SaveChangesAsync();
             }
         }
 
@@ -149,7 +150,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
                 x.TokenType == Entities.TokenType.TokenHandle).ToArray();
 
             _context.Tokens.RemoveRange(found);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task RemoveRefreshTokenAsync(string refreshTokenHandle)
@@ -162,7 +163,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             if (token != null)
             {
                 _context.Tokens.Remove(token);
-                await _context.SaveChangesAsync();
+                await ((DbContext)_context).SaveChangesAsync();
             }
         }
 
@@ -174,7 +175,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
                 x.TokenType == Entities.TokenType.RefreshToken).ToArray();
 
             _context.Tokens.RemoveRange(found);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task RemoveUserConsent(string subjectId, string clientId)
@@ -186,7 +187,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             if (found != null)
             {
                 _context.Consents.Remove(found);
-                await _context.SaveChangesAsync();
+                await ((DbContext)_context).SaveChangesAsync();
             }
         }
 
@@ -203,7 +204,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             };
 
             _context.Tokens.Add(token);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task StoreReferenceTokenAsync(string handle, Token token)
@@ -219,7 +220,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             };
 
             _context.Tokens.Add(storeToken);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task StoreRefreshTokenAsync(string handle, RefreshToken refreshToken)
@@ -242,7 +243,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             }
 
             token.Expiry = DateTime.UtcNow.AddSeconds(refreshToken.Lifetime);
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         public async Task StoreUserConsent(Consent consent)
@@ -268,7 +269,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
 
             item.Scopes = consent.Scopes.StringifyScopes();
 
-            await _context.SaveChangesAsync();
+            await ((DbContext)_context).SaveChangesAsync();
         }
 
         private JsonSerializerSettings GetJsonSerializerSettings()

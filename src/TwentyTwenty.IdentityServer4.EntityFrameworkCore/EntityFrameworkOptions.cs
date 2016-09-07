@@ -3,6 +3,7 @@ using IdentityServer4.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores;
 
@@ -23,9 +24,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
         }
 
         public EntityFrameworkOptions RegisterOperationalStores<TOperationalContext>()
-            where TOperationalContext : OperationalContext
+            where TOperationalContext : class, IOperationalContext
         {
-            _builder.Services.AddScoped<OperationalContext, TOperationalContext>();
+            _builder.Services.AddScoped<IOperationalContext, TOperationalContext>();
             _builder.Services.AddScoped<IPersistedGrantService, PersistedGrantService>();
 
             return this;
@@ -33,9 +34,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 
         public EntityFrameworkOptions RegisterClientStore<TKey, TClientContext>()
             where TKey : IEquatable<TKey>
-            where TClientContext : ClientConfigurationContext<TKey>
+            where TClientContext : class, IClientConfigurationContext<TKey>
         {
-            _builder.Services.AddScoped<ClientConfigurationContext<TKey>, TClientContext>();
+            _builder.Services.AddScoped<IClientConfigurationContext<TKey>, TClientContext>();
             _builder.Services.AddScoped<IClientStore, ClientStore<TKey>>();
             _builder.Services.AddScoped<ICorsPolicyService, ClientConfigurationCorsPolicyService<TKey>>();
 
@@ -44,9 +45,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore
 
         public EntityFrameworkOptions RegisterScopeStore<TKey, TScopeContext>()
             where TKey : IEquatable<TKey>
-            where TScopeContext : ScopeConfigurationContext<TKey>
+            where TScopeContext : class, IScopeConfigurationContext<TKey>
         {
-            _builder.Services.AddScoped<ScopeConfigurationContext<TKey>, TScopeContext>();
+            _builder.Services.AddScoped<IScopeConfigurationContext<TKey>, TScopeContext>();
             _builder.Services.AddScoped<IScopeStore, ScopeStore<TKey>>();
 
             return this;

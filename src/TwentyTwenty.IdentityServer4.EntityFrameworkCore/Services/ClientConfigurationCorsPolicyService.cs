@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Services
 {
     public class ClientConfigurationCorsPolicyService<TKey> : ICorsPolicyService
         where TKey : IEquatable<TKey>
     {
-        readonly ClientConfigurationContext<TKey> context;
+        readonly IClientConfigurationContext<TKey> context;
 
-        public ClientConfigurationCorsPolicyService(ClientConfigurationContext<TKey> ctx)
+        public ClientConfigurationCorsPolicyService(IClientConfigurationContext<TKey> ctx)
         {
             context = ctx;
         }

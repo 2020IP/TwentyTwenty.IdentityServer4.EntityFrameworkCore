@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
 using Models = IdentityServer4.Models;
 
@@ -11,9 +11,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
     public class ClientStore<TKey> : IClientStore
         where TKey : IEquatable<TKey>
     {
-        private readonly ClientConfigurationContext<TKey> context;
+        private readonly IClientConfigurationContext<TKey> context;
 
-        public ClientStore(ClientConfigurationContext<TKey> context)
+        public ClientStore(IClientConfigurationContext<TKey> context)
         {
             if (context == null) throw new ArgumentNullException("context");
 
