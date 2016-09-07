@@ -5,7 +5,61 @@
 [![OSX & Linux build status](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg?branch=master)](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore)
 [![NuGet](https://img.shields.io/nuget/v/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg)](https://www.nuget.org/packages/TwentyTwenty.IdentityServer4.EntityFrameworkCore/)
 
-#### Usage
+### Usage
+The primary key type can be configured for ClientStore and ScopeStore.
+To facilitate this, when you Register your contexts make sure you use the correct key.
+
+If you have set it up like this you can use EntityFramework Migrations against a single context to build your DB
+
+```
+public class YourDataContext : IClientConfigurationContext<Guid>, IScopeConfigurationContext<Guid>, IOperationalContext
+{
+	public YourDataContext(DbContextOptions<YourDataContext> options)
+		: base(options)
+	{ }
+
+	public override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		...
+		modelBuilder.ConfigureClientConfigurationContext<Guid>();
+		modelBuilder.ConfigureScopeConfigurationContext<Guid>();
+		modelBuilder.ConfigureOperationalContext();
+		...
+		base.OnModelCreating(modelBuilder);
+	}
+}
+```
+In the `Startup.cs`, register your DbContext with Entity Framework as normal
+```
+public void ConfigureServices(IServiceCollection services)
+{
+	...
+	services.AddEntityFrameworkSqlServer()
+		.AddDbContext<YourDatabaseContext>(o => o
+			.UseSqlServer(connectionString, b =>
+			b.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name)))
+	...
+}
+```
+Register your datacontext(s) with the EFCore Contexts
+```
+public void ConfigureServices(IServiceCollection services)
+{
+	...
+	var builder = services.AddIdentityServer(options =>
+	{
+		options.RequireSsl = false;
+	});
+
+	builder.ConfigureEntityFramework()
+		.RegisterOperationalStores<YourDataContext>()
+		.RegisterClientStore<Guid, YourDataContext>()
+		.RegisterScopeStore<Guid, YourDataContext>();
+	...
+}
+```
+
+#### Old Usage
 The primary key type can be configured for ClientStore and ScopeStore.  To facilitate this, subclass the `ClientConfigurationContext<TKey>` and `ScopeConfigurationContext<TKey>` with the desired key type.
 ```
 public class ClientConfigurationContext : ClientConfigurationContext<Guid>

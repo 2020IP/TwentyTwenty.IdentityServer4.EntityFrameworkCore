@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 
 namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 {
-    public class OperationalContext : DbContext
+    public class OperationalContext : DbContext, IOperationalContext
     {
         public OperationalContext(DbContextOptions options)
             : base(options)
@@ -15,24 +16,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Consent>(b =>
-            {
-                b.ToTable(EfConstants.TableNames.Consent);
-                b.Property(e => e.SubjectId).HasMaxLength(200);
-                b.Property(e => e.ClientId).HasMaxLength(200);
-                b.Property(e => e.Scopes).IsRequired().HasMaxLength(2000);
-                b.HasKey(e => new { e.SubjectId, e.ClientId });
-            });
-            
-            modelBuilder.Entity<Token>(b =>
-            {
-                b.ToTable(EfConstants.TableNames.Token);
-                b.Property(e => e.SubjectId).HasMaxLength(200);
-                b.Property(e => e.ClientId).IsRequired().HasMaxLength(200);
-                b.Property(e => e.JsonCode).IsRequired();
-                b.Property(e => e.Expiry).IsRequired();
-                b.HasKey(e => new { e.Key, e.TokenType });
-            });                
+            modelBuilder.ConfigureOperationalContext();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

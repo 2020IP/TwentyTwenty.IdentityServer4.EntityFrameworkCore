@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models = IdentityServer4.Models;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Entities;
-using TwentyTwenty.IdentityServer4.EntityFrameworkCore.DbContexts;
+using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using IdentityServer4.Stores;
 
@@ -13,9 +13,9 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
     public class ScopeStore<TKey> : IScopeStore
         where TKey : IEquatable<TKey>
     {
-        private readonly ScopeConfigurationContext<TKey> _context;
+        private readonly IScopeConfigurationContext<TKey> _context;
 
-        public ScopeStore(ScopeConfigurationContext<TKey> context)
+        public ScopeStore(IScopeConfigurationContext<TKey> context)
         {
             if (context == null)
             {
