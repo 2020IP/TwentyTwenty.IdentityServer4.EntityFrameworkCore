@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
-    "IdentityServer4": "1.0.0-rc1",
+    "IdentityServer4": "1.0.0-rc2",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0"

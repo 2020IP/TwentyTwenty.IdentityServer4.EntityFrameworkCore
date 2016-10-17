@@ -1,7 +1,7 @@
 ﻿using IdentityServer4.Models;
-using IdentityServer4.Quickstart;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using IdentityServer4.Stores.InMemory;
 using TwentyTwenty.IdentityServer4.EntityFrameworkCore.Serialization;
 using Xunit;
 
