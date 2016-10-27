@@ -5,6 +5,9 @@
 [![OSX & Linux build status](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg?branch=master)](https://travis-ci.org/2020IP/TwentyTwenty.IdentityServer4.EntityFrameworkCore)
 [![NuGet](https://img.shields.io/nuget/v/TwentyTwenty.IdentityServer4.EntityFrameworkCore.svg)](https://www.nuget.org/packages/TwentyTwenty.IdentityServer4.EntityFrameworkCore/)
 
+*CI Nuget Feed*
+https://ci.appveyor.com/nuget/twentytwenty-identityserver4-e-eghymilgfl2p
+
 ### Usage
 The primary key type can be configured for ClientStore and ScopeStore.
 To facilitate this, when you Register your contexts make sure you use the correct key.
