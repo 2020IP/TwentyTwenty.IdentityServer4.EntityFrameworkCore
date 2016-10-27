@@ -31,7 +31,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             _clientStore = clientStore;
         }
 
-        public async Task<IEnumerable<Consent>> GetAllGrants(string subjectId)
+        public async Task<IEnumerable<Consent>> GetAllGrantsAsync(string subjectId)
         {
             var found = await _context.Consents
                 .Where(x => x.SubjectId == subjectId).ToArrayAsync();
@@ -88,7 +88,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             return JsonConvert.DeserializeObject<RefreshToken>(token.JsonCode, GetJsonSerializerSettings());
         }
 
-        public async Task<Consent> GetUserConsent(string subjectId, string clientId)
+        public async Task<Consent> GetUserConsentAsync(string subjectId, string clientId)
         {
             var consent = await _context.Consents
                 .Where(x => x.SubjectId == subjectId && x.ClientId == clientId)
@@ -107,7 +107,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             };
         }
 
-        public async Task RemoveAllGrants(string subjectId, string clientId)
+        public async Task RemoveAllGrantsAsync(string subjectId, string clientId)
         {
             var tokens = _context.Tokens.ToArray();
             _context.Tokens.RemoveRange(tokens);
@@ -178,7 +178,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             await ((DbContext)_context).SaveChangesAsync();
         }
 
-        public async Task RemoveUserConsent(string subjectId, string clientId)
+        public async Task RemoveUserConsentAsync(string subjectId, string clientId)
         {
             var found = await _context.Consents
                 .Where(x => x.SubjectId == subjectId && x.ClientId == clientId)
@@ -246,7 +246,7 @@ namespace TwentyTwenty.IdentityServer4.EntityFrameworkCore.Stores
             await ((DbContext)_context).SaveChangesAsync();
         }
 
-        public async Task StoreUserConsent(Consent consent)
+        public async Task StoreUserConsentAsync(Consent consent)
         {
             var item = await _context.Consents
                 .Where(x => x.SubjectId == consent.SubjectId && x.ClientId == consent.ClientId)
